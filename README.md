@@ -1,173 +1,260 @@
-# Adaptive Project Governance (APG) 0.3.0
+# APG：把一句想法，变成一个能用的项目
 
-[English](#english) | [中文](#中文)
+**你负责说想做什么，APG 负责把它规划、设计、编排、开发、验证并交付。**
 
-![APG governance workflow](docs/diagrams/apg-governance-workflow.svg)
+不懂产品设计、不懂技术栈、不懂如何组织 AI 代理，也可以从一句自然语言开始：
 
-## 中文
+> 我想做一个帮助小商家自动生成短视频、管理素材并发布内容的工具。
 
-### APG 是什么
+APG 会把这句话逐步变成清晰的产品方案、专业的体验设计、合适的技术架构、可执行的任务计划和经过验证的项目结果。
 
-Adaptive Project Governance（APG）是一套面向代码库和自动化项目的、以审计证据为先的治理控制器。它把一次变更从“有人说做过”转化为可检查的工程记录：先确认项目根、规则和当前状态，再界定变更路径、验证影响、运行 Gate，并保留 Receipt 和可执行的回滚边界。
+[中文介绍](#中文介绍) | [English](#english)
 
-APG 的目标不是增加流程负担，也不是替代工程判断。它为多人协作、长周期演进和 AI 代理执行提供共同的事实基础：**什么被批准、什么实际改变、哪些检查通过、出现问题时能回到哪里**。
+![From an idea to a usable project](docs/diagrams/apg-governance-workflow.svg)
 
-### 它解决的问题
+## 中文介绍
 
-- 变更前不清楚项目根、规则、Git 状态或已有证据，导致修改落在错误位置。
-- preview、安装、运行时激活、外部发布和下游试用被混为一谈，离线通过被误称为正式上线。
-- 自动化修改缺少明确路径范围，历史证据、用户未提交变更或无关输出容易被覆盖。
-- 测试只记录 exit code，缺少输入、命令、结果、时间和关联 ChangeRecord，复核时无法回答“为什么相信它”。
-- 回滚只是一句说明，没有验证目标、哈希和最小作用域。
+### 一句话定位
 
-### 核心对象
+Adaptive Project Governance（APG）是一套面向普通用户和 AI 编程代理的**项目规划与落地系统**。
 
-| 对象 | 作用 |
-| --- | --- |
-| `audit` | 只读识别项目、风险、已有治理状态和潜在漂移。 |
-| `init` / `adopt` | 为新项目准备初始化，或以 Route B 方式增量纳入已有项目，不重写既有架构。 |
-| `plan-change` | 为高风险或结构性变更生成不可变 ChangeRecord、影响分析和审批范围。preview 不是执行授权。 |
-| `check` | 按受影响 Gate 计划执行快速或完整验证，并记录每个 Gate 的证据。 |
-| `doctor` | 检查治理文件、基线、收据、适配器和当前状态是否自洽。 |
-| ChangeRecord | 变更的目标、范围、验收条件、非目标、风险、遥测和回滚契约。 |
-| Gate | 可重复运行的验证命令；成功不只看退出码，也关联命令、结果和证据。 |
-| Receipt | 审计收据，记录谁、何时、以何种输入、在哪个范围内执行了什么。 |
-| Rollback | 以最小路径和精确后置状态为前提的恢复动作，不删除无关文件。 |
+它把成熟产品团队的工作方式装进一个可复用流程：理解想法、补全需求、设计产品、选择技术、拆解任务、编排代理、开发测试、交付结果。用户不需要先学会编程、框架、架构、项目管理或质量治理。
 
-### 标准工作方式
+### 用户只需要做什么
 
-1. **检查事实**：定位真实项目根，阅读本地规则，读取 Git 状态；已有 `.governance/project.toml` 时先运行 `doctor`。
-2. **选择接入路径**：未接入项目先只读 `audit`；新项目准备 `init` preview；已有或导入项目采用 Route B 的 `adopt` preview。
-3. **界定变更**：列出准确 changed paths、验收条件、非目标和回滚边界。高风险或结构性工作使用 `plan-change`。
-4. **获得授权后实施**：preview 只用于审阅。实际写入必须由项目所有者对具体根目录和路径范围授权。
-5. **验证并留证**：运行计划所要求的 Gate，读取结果、哈希、清单和 post-state；失败先停在首个失败点并保留证据。
-6. **交付或恢复**：交付包含 ChangeRecord、Receipt、检查结果和回滚说明。回滚前先验证目标仍符合记录的后置状态。
+1. **说出想法**：用日常语言描述想做的网站、应用、游戏、AI 工具、自动化、数据项目或其他产品。
+2. **回答少量必要问题**：例如给谁用、最重要的功能是什么、是否有预算或时间限制。能由系统判断的问题不会反复问用户。
+3. **确认关键方向和结果**：查看可理解的方案或成品，提出修改意见。
 
-### 五个彼此独立的外部边界
+其余工作由 APG 组织完成。
 
-一个本地包的验证通过，不会自动完成任何外部阶段。以下事务各自需要独立授权、执行证据和回滚记录：
+### APG 在后台完成什么
 
-1. **公开发布（public publication）**：把已验收的包或文档发布到公共仓库、标签或 Release。
-2. **全局推广（global promotion）**：安装或链接到工具的全局技能根，确认实际目标和发现结果。
-3. **宿主/运行时激活（host/runtime）**：重启或重新加载宿主，并确认它在新的运行时中发现了目标。
-4. **Provider/网络验证（provider/network）**：只有在单独授权后调用外部 provider 或网络服务并记录结果。
-5. **下游试点（downstream pilot）**：在独立项目中进行真实使用验收，并保留可比较的结果。
+#### 1. 把模糊想法变成清晰目标
 
-这五类状态不能互相推断。例如，GitHub 上存在 Release 不代表所有本地客户端都已完成运行时激活；本地静态检查通过也不代表 provider 或下游试点已完成。
+APG 会识别目标用户、使用场景、核心价值、成功标准和现实约束。信息不足时，它只追问真正影响方向的问题，并给出推荐答案，让没有产品经验的用户也能快速作决定。
 
-### 支持的工作环境
+#### 2. 按成熟团队方式设计产品
 
-APG 通过项目根的 `AGENTS.md` 和本地技能适配器接入代理工作流。当前包可用于 Codex、Claude Code、Cursor 及共享技能根的路由场景；每个宿主的实际发现、加载和运行时验收仍必须分别记录。APG 不安装 provider、不发送网络请求，也不替代宿主平台的权限与发布机制。
+系统会整理功能范围、用户流程、页面结构、数据关系、权限、异常状态和验收标准。对于前端产品，它会考虑交互效率、视觉层级、响应式布局和完整的加载、空状态、错误状态，而不是只做一个能截图的界面。
 
-### 快速开始
+#### 3. 自动选择合适的技术方案
 
-在项目根运行以下命令。先使用只读命令确认状态；只有在查看 preview 且得到该项目根的明确授权后，才使用 `--apply`。
+用户不需要决定 React、Vue、Python、数据库、云服务或模型框架。APG 会根据项目类型、规模、成本、维护难度、性能和现有环境选择适合的技术栈，并解释真正需要用户决定的取舍。
+
+#### 4. 把方案拆成可执行工程计划
+
+系统会明确阶段、依赖、模块边界、接口、测试、验收条件和交付顺序。复杂项目可以拆给多个专业代理并行工作，同时避免大家修改同一处、重复劳动或互相覆盖。
+
+#### 5. 编排 AI 代理完成落地
+
+APG 可以协调研究、产品、设计、架构、前端、后端、测试、审查和发布等角色。它会根据任务复杂度决定是由一个代理完成，还是组成小型协作团队，并持续把工作对齐到最初目标。
+
+#### 6. 交付能运行、能验收、能继续迭代的结果
+
+交付不只是几段代码。APG 会组织必要的测试、构建、说明文档、运行方式和验收结果，使项目可以被打开、使用、检查和继续开发。
+
+### 能做哪些项目
+
+- 网站、管理后台、企业工具和 SaaS 产品
+- 移动应用、桌面应用、小程序和浏览器扩展
+- AI 助手、知识库、智能工作流和模型应用
+- 数据分析、报表、仪表盘和自动化处理系统
+- 游戏、互动体验、内容生产和创意工具
+- API、后端服务、脚本、机器人和内部自动化
+- 已有项目的功能升级、重构、修复和持续迭代
+
+APG 不限定某一种编程语言或框架。它先理解要解决的问题，再选择实现方式。
+
+### 一个想法如何变成结果
+
+```text
+用户说出想法
+  → APG 理解目标并补全必要信息
+  → 形成产品方案和用户体验设计
+  → 选择架构、技术栈和交付方式
+  → 拆解任务并编排专业代理
+  → 开发、集成、测试和审查
+  → 交付可运行项目与验收结果
+  → 根据反馈继续迭代
+```
+
+可编辑工程图见 [APG idea-to-result workflow](docs/diagrams/apg-governance-workflow.drawio)。
+
+### 为什么它不会只是“让 AI 随便写代码”
+
+用户不需要理解治理术语，但系统需要在后台保证工程质量。APG 会默默维护以下能力：
+
+- **范围清楚**：只修改当前任务需要的内容，保留用户已有工作。
+- **设计先行**：先理解目标和影响，再进入实现。
+- **质量检查**：根据项目风险运行合适的测试、构建和验证。
+- **过程可恢复**：重要操作保留恢复边界，失败时不会随意破坏项目。
+- **状态不混淆**：本地完成、安装、运行、公开发布和真实项目验收分别确认。
+- **长期可继续**：保留足够的项目上下文，让后续代理能够接着做，而不是每次重新猜。
+
+这些机制服务于一个简单结果：**用户只需要关注想法和成品，不需要管理中间的工程混乱。**
+
+### 与 Codex、Claude、Cursor、Grok 等工具的关系
+
+APG 不是新的大模型，也不替代编程代理。它是这些代理上层的项目工作系统：为它们提供统一的目标、规划、任务边界、协作方式和质量标准。
+
+同一个 APG 项目可以根据本机环境接入 Codex、Claude Code、Cursor 或共享技能路由。每个客户端是否已经发现并加载 APG，需要在对应环境中分别验证。
+
+### 怎么开始
+
+最简单的用法不是先写配置，而是直接描述目标：
+
+```text
+我想做一个面向健身教练的会员管理系统，能记录课程、生成训练计划、提醒续费。
+我不懂技术，请你用 APG 帮我从产品规划开始，一直做到可以运行和验收。
+```
+
+也可以把现有项目交给 APG：
+
+```text
+这是我现有的项目。请先理解它，不要破坏已有内容，然后帮我增加团队协作和数据报表功能。
+```
+
+### 给工程人员的控制接口
+
+APG 同时保留可审计的控制器接口。下面这些命令用于项目诊断、接入、变更规划和质量检查；普通用户不需要手动执行它们。
 
 ```powershell
 $apg = 'C:\Users\Administrator\.codex\skills\adaptive-project-governance\scripts\project_governance.py'
-
-# 已接入项目：诊断治理状态
 python -B -X utf8 $apg doctor . --json
-
-# 未接入项目：只读审计
 python -B -X utf8 $apg audit . --json
-
-# 高风险或结构性变更：先创建 preview
 python -B -X utf8 $apg plan-change . --request .\change-request.json --json
-
-# 获得针对该范围的授权后，写入 ChangeRecord 和收据
-python -B -X utf8 $apg plan-change . --request .\change-request.json --apply --json
-
-# 执行计划要求的验证阶段
 python -B -X utf8 $apg check . --phase full --json
 ```
 
-### 适用范围与非目标
+### 当前公开版本
 
-APG 适用于需要保留变更证据、控制范围和可恢复性的应用、脚本、自动化、导入开源项目与多代理协作项目。它不替代源代码审查、CI、发布平台、基础设施权限、服务监控或人工验收；它把这些活动的边界与证据串联起来。
+`v0.3.0` 是当前已接受的 APG 核心包。`MANIFEST.json` 定义规范文件集合并支持独立哈希验证。对 `main` 分支的介绍和工程图更新不会重写不可变的 `v0.3.0` 标签。
 
-### 0.3.0 包身份
+公开包完成不自动等于所有客户端运行时、外部 provider 或下游项目试点已经完成；这些状态会在实际使用环境中分别验证。
 
-`v0.3.0` 是已接受的本地 APG 包。`MANIFEST.json` 定义规范文件集合，可独立计算 SHA-256。对 `main` 分支的说明文档更新不重写该不可变标签，也不改变已接受包的身份。
-
-查看 [操作指南](docs/README.md)、[技能契约](SKILL.md) 和 [流程工程图](docs/diagrams/apg-governance-workflow.drawio)。
+查看 [操作指南](docs/README.md) 和 [技能契约](SKILL.md)。
 
 ---
 
 ## English
 
-### What APG Is
+### From One Idea to a Working Project
 
-Adaptive Project Governance (APG) is a repository-scoped, audit-first controller for software and automation work. It turns a change from an informal claim into inspectable engineering evidence: establish the project root, local rules, and current state; bound the change; validate its impact; run Gates; and retain Receipts and a verifiable rollback boundary.
+Adaptive Project Governance (APG) is a **project planning and delivery system for people and AI coding agents**.
 
-APG does not replace engineering judgment. It gives human collaborators and coding agents a shared factual record of **what was authorized, what changed, which checks passed, and where recovery ends**.
+You describe what you want in ordinary language. APG organizes the work required to turn it into a usable project: requirements, product design, user experience, architecture, technology selection, task planning, agent orchestration, implementation, testing, and delivery.
 
-### What It Addresses
+You do not need to choose a framework, design a database, manage an agent team, or understand project governance before you begin.
 
-- Changes made without first identifying the real project root, local rules, Git state, or existing evidence.
-- Previews, installation, runtime activation, public publication, and downstream use treated as one completed stage.
-- Automation that overwrites user work, historical evidence, or unrelated outputs because its path boundary is unclear.
-- Test reports that preserve only an exit code and cannot answer which command, input, result, or ChangeRecord supports the claim.
-- Rollback instructions that have no verified target, post-state hash, or narrow scope.
+> I want a tool that helps small businesses generate short videos, manage their media, and publish content.
 
-### Core Building Blocks
+APG turns that sentence into a clear product plan and an executable engineering process.
 
-| Building block | Purpose |
-| --- | --- |
-| `audit` | Read-only discovery of project state, risk, governance evidence, and drift. |
-| `init` / `adopt` | Prepare a new project or incrementally adopt an existing project through Route B without rewriting its architecture. |
-| `plan-change` | Produce an immutable ChangeRecord, impact analysis, and approval boundary for high-risk or structural work. A preview is not authorization. |
-| `check` | Execute the affected fast or full Gate plan and record evidence for each Gate. |
-| `doctor` | Verify that governance files, baseline, receipts, adapters, and state projections remain coherent. |
-| ChangeRecord | Contract for intent, exact paths, acceptance, non-goals, risk, telemetry, and rollback. |
-| Gate | Repeatable validation command whose result is connected to command, outcome, and evidence. |
-| Receipt | Audit record of who ran what, when, with which inputs, and inside which authorized scope. |
-| Rollback | Minimal recovery action that first verifies the recorded post-state and preserves unrelated files. |
+### What the User Does
 
-### Operating Workflow
+1. **Describe the idea** in natural language.
+2. **Answer a small number of necessary questions** about users, priorities, budget, or constraints. APG resolves questions it can answer itself.
+3. **Confirm key directions and review the result.**
 
-1. **Establish facts**: locate the physical root, read local rules, inspect Git; run `doctor` first when `.governance/project.toml` exists.
-2. **Choose an adoption path**: use read-only `audit` for an unadopted project; prepare `init` for a new one, or Route B `adopt` for an existing/imported one.
-3. **Bound the work**: state exact changed paths, acceptance, non-goals, and rollback. Use `plan-change` for high-risk or structural work.
-4. **Implement only after authorization**: a preview is review material, not write authority. The owner authorizes the specific root and paths.
-5. **Validate and retain evidence**: run the required Gates; inspect results, hashes, manifests, and post-state. Stop on the first failure and preserve the evidence.
-6. **Deliver or recover**: hand over the ChangeRecord, Receipts, check results, and rollback contract. Verify the post-state before rollback.
+APG organizes the rest.
 
-### Independent External Boundaries
+### What APG Handles
 
-Passing a local package check does not complete any external stage. Each of these requires separate authorization, execution evidence, and rollback evidence:
+#### Understand the Goal
 
-1. **Public publication**: publish a package or documentation to a public repository, tag, or Release.
-2. **Global promotion**: install or link to a tool's global skill root and verify the resolved target and discovery result.
-3. **Host/runtime activation**: reload or restart the host and verify that a fresh runtime discovers the target.
-4. **Provider/network validation**: call an external provider or network service only under a separate transaction and record the result.
-5. **Downstream pilot**: accept real use in an independent project with comparable evidence.
+APG identifies the target users, real-world scenarios, core value, success criteria, and constraints. When information is missing, it asks only decisions that materially affect the outcome and provides a recommended answer.
 
-No stage implies another. A GitHub Release does not prove runtime activation in every local client, and an offline check does not prove provider or downstream acceptance.
+#### Design the Product Professionally
 
-### Environments and Boundaries
+It defines the feature scope, user journeys, screens, states, data relationships, permissions, failure behavior, and acceptance criteria. User-facing products include responsive behavior and complete loading, empty, success, and error states rather than a screenshot-only interface.
 
-APG integrates with agent workflows through project-root `AGENTS.md` rules and local skill adapters. This package can be used with Codex, Claude Code, Cursor, and shared-skill routing, but each host's discovery, loading, and runtime acceptance remains a separate recorded fact. APG does not install providers, send network traffic, or replace platform permission and release mechanisms.
+#### Select the Technology
 
-### Quick Start
+The user does not need to choose React, Vue, Python, a database, a cloud platform, or an AI framework. APG evaluates the project type, scale, cost, maintainability, performance, and existing environment, then selects an appropriate stack and surfaces only meaningful tradeoffs.
 
-Run from the project root. Start with read-only inspection. Use `--apply` only after reviewing the preview and receiving explicit authorization for that project root and bounded path set.
+#### Build an Executable Plan
+
+APG breaks the solution into phases, dependencies, modules, interfaces, tests, acceptance conditions, and delivery order. Complex work can be assigned to specialized agents in parallel without overlapping ownership or duplicated effort.
+
+#### Orchestrate AI Agents
+
+APG can coordinate research, product, design, architecture, frontend, backend, testing, review, and release roles. It decides whether a task needs one agent or a small collaborating team and keeps every role aligned with the original goal.
+
+#### Deliver a Usable Result
+
+Delivery is more than generated code. APG organizes the build, tests, documentation, runtime instructions, and acceptance evidence so the project can be opened, used, reviewed, and extended.
+
+### Projects APG Can Organize
+
+- Websites, dashboards, operational tools, and SaaS products
+- Mobile, desktop, mini-app, and browser-extension projects
+- AI assistants, knowledge systems, workflows, and model-powered applications
+- Data analysis, reports, dashboards, and automation systems
+- Games, interactive experiences, content-production and creative tools
+- APIs, backend services, scripts, bots, and internal automation
+- Features, repairs, refactors, and continued development of existing projects
+
+APG is not tied to one language or framework. It starts with the problem and selects an implementation that fits.
+
+### Idea-to-Result Workflow
+
+```text
+Describe an idea
+  → understand the goal and resolve necessary unknowns
+  → create the product and experience design
+  → select architecture, technology, and delivery strategy
+  → decompose work and orchestrate specialized agents
+  → implement, integrate, test, and review
+  → deliver a runnable project and acceptance result
+  → continue iterating from feedback
+```
+
+See the editable [APG idea-to-result workflow](docs/diagrams/apg-governance-workflow.drawio).
+
+### The Engineering Discipline Stays in the Background
+
+Users should not have to manage governance terminology. APG quietly keeps changes bounded, validates work at the appropriate level, preserves existing project state, retains recovery paths for important operations, and keeps installation, runtime, publication, and real-world acceptance as separate facts.
+
+The purpose is simple: **the user focuses on the idea and the outcome while APG manages the engineering complexity in between.**
+
+### Working with Codex, Claude, Cursor, and Grok
+
+APG is not a new foundation model and does not replace coding agents. It is the project operating layer above them, providing shared goals, plans, ownership boundaries, collaboration rules, and quality standards.
+
+An APG project can connect to Codex, Claude Code, Cursor, or shared-skill routing according to the local environment. Discovery and runtime activation must still be verified separately for each host.
+
+### Start with Natural Language
+
+```text
+I want a membership system for fitness coaches that tracks sessions,
+generates training plans, and reminds clients to renew.
+I am not technical. Use APG to take it from product planning to a runnable result.
+```
+
+For an existing project:
+
+```text
+Understand this project first and preserve its existing work.
+Then add team collaboration and analytics reporting.
+```
+
+### Engineering Interface
+
+APG also exposes auditable controller commands for diagnostics, adoption, change planning, and quality checks. Non-technical users do not need to run these manually.
 
 ```powershell
 $apg = 'C:\Users\Administrator\.codex\skills\adaptive-project-governance\scripts\project_governance.py'
 python -B -X utf8 $apg doctor . --json
 python -B -X utf8 $apg audit . --json
 python -B -X utf8 $apg plan-change . --request .\change-request.json --json
-python -B -X utf8 $apg plan-change . --request .\change-request.json --apply --json
 python -B -X utf8 $apg check . --phase full --json
 ```
 
-### Scope and Non-Goals
+### Current Public Version
 
-APG fits applications, scripts, automations, imported open-source work, and multi-agent projects that need evidence, bounded changes, and recoverability. It does not replace code review, CI, release systems, infrastructure permissions, service monitoring, or human acceptance. It makes their boundaries and evidence explicit.
+`v0.3.0` is the currently accepted APG core package. `MANIFEST.json` defines its canonical file set for independent hash verification. Documentation updates on `main` do not rewrite the immutable `v0.3.0` tag.
 
-### Package Identity
+A public package does not automatically prove runtime activation in every client, external-provider acceptance, or downstream project acceptance. Those stages are verified in their actual environments.
 
-`v0.3.0` is the accepted local APG package. `MANIFEST.json` defines its canonical file set and can be independently hashed with SHA-256. Documentation updates on `main` do not rewrite the immutable tag or change the accepted package identity.
-
-See the [operator guide](docs/README.md), [skill contract](SKILL.md), and [editable workflow diagram](docs/diagrams/apg-governance-workflow.drawio).
+See the [operator guide](docs/README.md) and [skill contract](SKILL.md).
