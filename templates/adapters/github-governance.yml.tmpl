@@ -1,0 +1,17 @@
+# Required checks are declared here; repository branch protection is not configured by this file.
+# project-governance:begin
+# project-governance:metadata policy-version={{policy_version}} policy-digest={{policy_digest}} generator-version={{generator_version}} scope={{scope}}
+# Project root: {{project_root}}
+# Required phases: inspect, validate, verify, report.
+name: project-governance
+on: [pull_request]
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Local governance validation
+        working-directory: {{project_root}}
+        run: |
+{{github_validation_commands}}
+# project-governance:end

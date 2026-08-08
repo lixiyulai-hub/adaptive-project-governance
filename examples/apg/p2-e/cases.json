@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {
+      "case_id": "case-01-3d-racing-game",
+      "scenario_code": "new.3d-racing-game",
+      "applicability_context": {"domains":["game","three-d"],"risk_level":"routine","data_class":null,"evidence_refs":["evidence.domain.game","evidence.domain.three-d","evidence.risk.routine"]},
+      "applicable_pack_ids": ["game", "three-d"],
+      "expected_disposition": "ready-for-preview",
+      "expected_question_count": 0,
+      "intake": {"decisions":[{"confidence":"high","decision_id":"decision.delivery-mode","disposition":"D","evidence_refs":["evidence.learning-purpose","evidence.project-mode"],"recommendation_code":"prototype.local","resolution_state":"ai-resolved","topic_code":"delivery.mode","user_impact_code":"low-reversible"}],"evidence":[{"kind":"user-confirmation","locator":"statement.domain.game","reference_id":"evidence.domain.game"},{"kind":"user-confirmation","locator":"statement.domain.three-d","reference_id":"evidence.domain.three-d"},{"kind":"user-confirmation","locator":"statement.learning-purpose","reference_id":"evidence.learning-purpose"},{"kind":"user-confirmation","locator":"statement.new-project","reference_id":"evidence.project-mode"},{"kind":"user-confirmation","locator":"statement.risk.routine","reference_id":"evidence.risk.routine"}],"extension_schema_version":"1.0","intake_id":"intake.example.3d-racing","need_evidence_level":"T0","project_mode":"new","project_mode_evidence_refs":["evidence.project-mode"],"purpose":"personal-learning","remediation_level":"L0","slice_complexity":"simple","stack_fitness":"S0","stop_state":"ready-for-preview","user_context":{"audience_mode":"self","domain_experience":"beginner","project_relationship":"owner","technical_experience":"beginner"}}
+    },
+    {
+      "case_id": "case-02-ecommerce",
+      "scenario_code": "new.ecommerce",
+      "applicability_context": {"domains":["ecommerce"],"risk_level":"moderate","data_class":null,"evidence_refs":["evidence.domain.ecommerce","evidence.risk.moderate"]},
+      "applicable_pack_ids": ["ecommerce"],
+      "expected_disposition": "next-question",
+      "expected_question_count": 1,
+      "intake": {"decisions":[{"confidence":"medium","decision_id":"decision.audience-scope","disposition":"V","evidence_refs":["evidence.market-scan"],"recommendation_code":"audience.validate-hypothesis","resolution_state":"open","topic_code":"audience.scope","user_impact_code":"medium-reversible"}],"evidence":[{"kind":"user-confirmation","locator":"statement.domain.ecommerce","reference_id":"evidence.domain.ecommerce"},{"kind":"public-research","locator":"research.market-scan-v1","reference_id":"evidence.market-scan"},{"kind":"user-confirmation","locator":"statement.new-project","reference_id":"evidence.project-mode"},{"kind":"user-confirmation","locator":"statement.risk.moderate","reference_id":"evidence.risk.moderate"}],"extension_schema_version":"1.0","intake_id":"intake.example.ecommerce","need_evidence_level":"T1","project_mode":"new","project_mode_evidence_refs":["evidence.project-mode"],"purpose":"real-audience","remediation_level":"L0","slice_complexity":"simple","stack_fitness":"S2","stop_state":"continue","user_context":{"audience_mode":"public","domain_experience":"beginner","project_relationship":"owner","technical_experience":"beginner"}}
+    },
+    {
+      "case_id": "case-03-existing-wrong-stack",
+      "scenario_code": "existing.wrong-stack",
+      "applicability_context": {"domains":["security"],"risk_level":"high","data_class":null,"evidence_refs":["evidence.domain.security","evidence.risk.high"]},
+      "applicable_pack_ids": ["security"],
+      "expected_disposition": "ready-for-preview",
+      "expected_question_count": 0,
+      "intake": {"decisions":[{"confidence":"high","decision_id":"decision.stack-compatibility","disposition":"V","evidence_refs":["evidence.project-code","evidence.viability"],"recommendation_code":"stack.retain-and-repair","resolution_state":"ai-resolved","topic_code":"stack.compatibility","user_impact_code":"medium-reversible"}],"evidence":[{"kind":"user-confirmation","locator":"statement.domain.security","reference_id":"evidence.domain.security"},{"kind":"project-evidence","locator":"project_governance/model.py","reference_id":"evidence.project-code"},{"kind":"real-user-evidence","locator":"research.interview-summary-v1","reference_id":"evidence.real-users"},{"kind":"user-confirmation","locator":"statement.risk.high","reference_id":"evidence.risk.high"},{"kind":"technical-viability","locator":"tests/project_governance/test_storage.py","reference_id":"evidence.viability"}],"extension_schema_version":"1.0","intake_id":"intake.example.wrong-stack","need_evidence_level":"T2","project_mode":"existing","project_mode_evidence_refs":["evidence.project-code"],"purpose":"real-audience","remediation_level":"L3","slice_complexity":"complex","stack_fitness":"S4","stop_state":"ready-for-preview","user_context":{"audience_mode":"known-group","domain_experience":"intermediate","project_relationship":"maintainer","technical_experience":"intermediate"}}
+    },
+    {
+      "case_id": "case-04-t0-learning",
+      "scenario_code": "personal.learning",
+      "applicability_context": {"domains":["accessibility"],"risk_level":"routine","data_class":null,"evidence_refs":["evidence.domain.accessibility","evidence.risk.routine"]},
+      "applicable_pack_ids": ["accessibility"],
+      "expected_disposition": "ready-for-preview",
+      "expected_question_count": 0,
+      "intake": {"decisions":[{"confidence":"high","decision_id":"decision.delivery-mode","disposition":"D","evidence_refs":["evidence.learning-purpose","evidence.project-mode"],"recommendation_code":"prototype.local","resolution_state":"ai-resolved","topic_code":"delivery.mode","user_impact_code":"low-reversible"}],"evidence":[{"kind":"user-confirmation","locator":"statement.domain.accessibility","reference_id":"evidence.domain.accessibility"},{"kind":"user-confirmation","locator":"statement.learning-purpose","reference_id":"evidence.learning-purpose"},{"kind":"user-confirmation","locator":"statement.new-project","reference_id":"evidence.project-mode"},{"kind":"user-confirmation","locator":"statement.risk.routine","reference_id":"evidence.risk.routine"}],"extension_schema_version":"1.0","intake_id":"intake.example.learning","need_evidence_level":"T0","project_mode":"new","project_mode_evidence_refs":["evidence.project-mode"],"purpose":"personal-learning","remediation_level":"L0","slice_complexity":"simple","stack_fitness":"S0","stop_state":"ready-for-preview","user_context":{"audience_mode":"self","domain_experience":"beginner","project_relationship":"owner","technical_experience":"beginner"}}
+    },
+    {
+      "case_id": "case-05-cross-domain-system",
+      "scenario_code": "existing.cross-domain",
+      "applicability_context": {"domains":["privacy","security"],"risk_level":"high","data_class":null,"evidence_refs":["evidence.domain.privacy","evidence.domain.security","evidence.risk.high"]},
+      "applicable_pack_ids": ["privacy", "security"],
+      "expected_disposition": "next-question",
+      "expected_question_count": 1,
+      "intake": {"decisions":[{"confidence":"medium","decision_id":"decision.data-boundary","disposition":"V","evidence_refs":["evidence.project-code","evidence.research"],"recommendation_code":"data.verify-boundary","resolution_state":"open","topic_code":"data.boundary","user_impact_code":"high-reversible"},{"confidence":"high","decision_id":"decision.project-mode","disposition":"D","evidence_refs":["evidence.project-code"],"recommendation_code":"project.preserve-existing","resolution_state":"ai-resolved","topic_code":"project.mode","user_impact_code":"low-reversible"}],"evidence":[{"kind":"user-confirmation","locator":"statement.domain.privacy","reference_id":"evidence.domain.privacy"},{"kind":"user-confirmation","locator":"statement.domain.security","reference_id":"evidence.domain.security"},{"kind":"project-evidence","locator":"project_governance/model.py","reference_id":"evidence.project-code"},{"kind":"public-research","locator":"research.domain-scan-v1","reference_id":"evidence.research"},{"kind":"user-confirmation","locator":"statement.risk.high","reference_id":"evidence.risk.high"}],"extension_schema_version":"1.0","intake_id":"intake.example.cross-domain","need_evidence_level":"T1","project_mode":"existing","project_mode_evidence_refs":["evidence.project-code"],"purpose":"real-audience","remediation_level":"L1","slice_complexity":"complex","stack_fitness":"S2","stop_state":"continue","user_context":{"audience_mode":"known-group","domain_experience":"intermediate","project_relationship":"maintainer","technical_experience":"advanced"}}
+    },
+    {
+      "case_id": "case-06-high-risk-payment",
+      "scenario_code": "high-risk.payment-data-external",
+      "applicability_context": {"domains":["payments","privacy","security"],"risk_level":"critical","data_class":null,"evidence_refs":["evidence.domain.payments","evidence.domain.privacy","evidence.domain.security","evidence.risk.critical"]},
+      "applicable_pack_ids": ["payments", "privacy", "security"],
+      "expected_disposition": "owner-gate",
+      "expected_question_count": 1,
+      "intake": {"decisions":[{"confidence":"high","decision_id":"decision.production-funds","disposition":"B","evidence_refs":["evidence.project-mode","evidence.real-users"],"recommendation_code":"payments.owner-confirmation","resolution_state":"open","topic_code":"payments.production-funds","user_impact_code":"irreversible-external"}],"evidence":[{"kind":"user-confirmation","locator":"statement.domain.payments","reference_id":"evidence.domain.payments"},{"kind":"user-confirmation","locator":"statement.domain.privacy","reference_id":"evidence.domain.privacy"},{"kind":"user-confirmation","locator":"statement.domain.security","reference_id":"evidence.domain.security"},{"kind":"project-evidence","locator":"project_governance/model.py","reference_id":"evidence.project-mode"},{"kind":"real-user-evidence","locator":"research.payment-pilot-v1","reference_id":"evidence.real-users"},{"kind":"user-confirmation","locator":"statement.risk.critical","reference_id":"evidence.risk.critical"}],"extension_schema_version":"1.0","intake_id":"intake.example.high-risk-payment","need_evidence_level":"T2","project_mode":"existing","project_mode_evidence_refs":["evidence.project-mode"],"purpose":"real-audience","remediation_level":"L2","slice_complexity":"complex","stack_fitness":"S2","stop_state":"owner-gate","user_context":{"audience_mode":"public","domain_experience":"intermediate","project_relationship":"owner","technical_experience":"intermediate"}}
+    }
+  ]
+}

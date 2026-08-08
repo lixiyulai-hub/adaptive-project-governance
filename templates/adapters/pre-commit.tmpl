@@ -1,0 +1,9 @@
+#!/bin/sh
+# project-governance:begin
+# project-governance:metadata policy-version={{policy_version}} policy-digest={{policy_digest}} generator-version={{generator_version}} scope={{scope}}
+# Run from project root: {{project_root}}
+# Required phases: inspect, validate, verify, report.
+# Preview-only local hook. No global installation is required.
+set -e
+{{validation_commands}}
+# project-governance:end

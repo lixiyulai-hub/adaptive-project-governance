@@ -1,0 +1,6 @@
+interface:
+  display_name: "Adaptive Project Governance"
+  short_description: "Audit and govern growing software projects"
+  default_prompt: "Use $adaptive-project-governance to audit this project and propose a bounded governance plan."
+policy:
+  allow_implicit_invocation: true

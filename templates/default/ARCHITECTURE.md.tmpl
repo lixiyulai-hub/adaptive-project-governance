@@ -1,0 +1,21 @@
+# Architecture
+
+## Module boundaries
+Project types: {{project_types}}
+Operational dependencies: {{operational_dependencies}}
+
+- Module boundaries are **unknown** unless repository evidence proves ownership and dependency direction.
+- Evidence task: identify each module boundary, owner, allowed dependency direction, and a representative test or manifest.
+
+## Public contracts
+Public surfaces: {{public_surfaces}}
+
+- Public contracts are **unknown** unless repository evidence proves the API, CLI, schema, event, or file contract.
+- Evidence task: enumerate each public contract, compatibility rule, consumer, and verification command.
+
+## Invariants
+- The canonical policy remains authoritative at `.governance/policy.toml`.
+- Public contracts and data flows require evidence before change.
+
+## Generated evidence
+{{evidence}}
