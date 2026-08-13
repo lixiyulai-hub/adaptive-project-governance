@@ -253,8 +253,16 @@ python -B -X utf8 $apg check . --phase full --json
 
 ### Current Public Version
 
-`v0.3.0` is the currently accepted APG core package. `MANIFEST.json` defines its canonical file set for independent hash verification. Documentation updates on `main` do not rewrite the immutable `v0.3.0` tag.
+`v0.4.0-dev.20260813` is the APG `main` development snapshot. Its core package
+contains the repository-validated P3-A through P3-J capabilities and aligned
+`RPD.md`; `MANIFEST.json` defines the canonical core file set for independent
+hash verification. The immutable `v0.3.0` tag remains unchanged, and this
+snapshot does not create a tag or GitHub Release.
 
-A public package does not automatically prove runtime activation in every client, external-provider acceptance, or downstream project acceptance. Those stages are verified in their actual environments.
+A public package does not automatically prove host integration, runtime
+activation in every client, external-provider acceptance, target-project
+execution, deployment, promotion, pilot, or formal release acceptance. Those
+stages are verified in their actual environments and remain outside this
+snapshot.
 
 See the [operator guide](docs/README.md) and [skill contract](SKILL.md).

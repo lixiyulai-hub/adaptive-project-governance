@@ -418,3 +418,267 @@ P2-A also leaves CLI commands, agent prompts, research execution, candidate
 scoring, Domain Packs, packaging, global installation, promotion, host reload,
 downstream projects, external services, dependencies, and Git operations to
 later Change IDs.
+
+## P3-A one-idea intake and decision routing
+
+The beginner-facing promise is simple: say what you want to build once, then
+answer only the questions that materially change the result. P3-A turns that
+one idea into bounded, structured intent and a decision route. It composes above
+the accepted P2-A intake, P2-B routing, P2-C stack, P2-D Domain Pack, and P2-E
+guided-UX contracts; it does not replace or mutate them.
+
+The caller may pass one trimmed NFC UTF-8 idea of at most 4 KiB to
+`build_user_intent`. This is conservative deterministic keyword extraction, not
+proof that APG understood arbitrary natural language. Unmatched or conflicting
+concepts remain explicit uncertainty. `parse_user_intent` and
+`render_user_intent` provide the separate canonical-byte contract for the
+normalized result. P3-A keeps only normalized project facts: project type,
+target platform, user persona, goals, constraints, uncertainty, and stable
+evidence references. A normalized
+intent contains no field for a raw prompt, conversation transcript, name, email
+address, account or customer identifier, credential, access token, secret, or
+customer record. Secret-shaped scalars, unknown fields, duplicate JSON keys,
+unsupported enum values, traversal or absolute paths, non-canonical JSON, and
+oversized records fail closed.
+
+Every proposed decision has exactly one disposition:
+
+| Disposition | Operator meaning |
+|---|---|
+| `AUTO` | APG may choose a reversible, bounded default because the evidence is sufficient and no mandatory confirmation trigger applies. The output records the decision, rationale, confidence, and evidence; it is not an approval to perform a side effect. |
+| `RECOMMEND` | APG presents a preferred default with rationale, bounded confidence, and the consequence of choosing differently. The user may accept or override it, but P3-A does not execute the recommendation. |
+| `CONFIRM` | The owner must make or explicitly accept the decision before dependent planning continues. APG may explain options and recommend one, but it may not silently convert the item to `AUTO` or treat absence of a reply as consent. |
+
+`CONFIRM` is mandatory for cost or paid operations, production use, privacy or
+personal-data handling, real customer or production data, provider or network
+access, public publication, deployment, an irreversible external action, or a
+materially ambiguous product direction. These triggers are monotonic: stronger
+evidence may improve the recommendation, but cannot remove the owner gate.
+
+The router output separates these fields rather than collapsing them into prose:
+
+- `structured_intent`: normalized project type, target platform, persona,
+  goals, constraints, uncertainty, and evidence references.
+- `necessary_questions`: only unresolved questions whose answers can materially
+  alter scope, product direction, risk, delivery, or acceptance.
+- `recommended_plan`: bounded next-step recommendations suitable for later
+  blueprint generation.
+- `automatic_decisions`, `recommended_decisions`, and
+  `confirmation_required_decisions`: disjoint decision groups with stable IDs.
+- `rationale`, `confidence`, and `evidence_refs`: bounded support for the route;
+  confidence communicates uncertainty and never upgrades evidence into fact.
+
+The complete canonical record is limited to 64 KiB. IDs and codes are lowercase
+ASCII tokens of at most 80 characters; evidence locators are at most 240
+characters. Structured intent accepts at most 16 goals, 16 constraints, and 16
+uncertainties. A route contains at most 16 necessary questions, 16 recommended
+plan entries, 32 decisions across all three disposition groups, 64 evidence
+references, and 16 evidence references on one item. Arrays use deterministic
+ordering, confidence uses a closed bounded vocabulary, and rendering is stable
+UTF-8 JSON with one trailing newline.
+
+P3-A is a standard-library-only, in-memory evidence boundary. `route_user_intent`
+computes dispositions from a validated `UserIntent`; callers cannot provide or
+downgrade them. Parsing, classification, routing, and rendering perform no
+filesystem writes, network or
+provider calls, dependency discovery, approval creation, Gate selection,
+runtime launch, publication, deployment, promotion, release, or downstream
+project mutation. Caller-owned input bytes and returned canonical bytes are not
+persisted by the module.
+
+P3-A evidence may be supplied to a later P3-B Project Blueprint Generator. It
+does not generate `PROJECT_BRIEF`, `PRODUCT_PLAN`, `UX_FLOW`, `ARCHITECTURE`,
+`STACK_DECISION`, `TASK_GRAPH`, `QUALITY_PLAN`, or `DEPLOYMENT_PLAN`; P3-B
+requires its own ChangeRecord, preview, authorization, Gates, acceptance, and
+rollback. Public publication, global promotion, host/runtime activation,
+provider/network acceptance, downstream pilot acceptance, deployment, and
+release are also separate facts. None is proved by a P3-A parse, route, test,
+Doctor result, or repository-local package result.
+
+## P3-B project blueprint generation
+
+The product direction remains **说出来一个想法，得到一个结果**. After P3-A
+has structured the idea and separated `AUTO`, `RECOMMEND`, and `CONFIRM`, P3-B
+turns an accepted route into exactly eight planning sections:
+`PROJECT_BRIEF`, `PRODUCT_PLAN`, `UX_FLOW`, `ARCHITECTURE`, `STACK_DECISION`,
+`TASK_GRAPH`, `QUALITY_PLAN`, and `DEPLOYMENT_PLAN`.
+
+The generator is deterministic, immutable, source-hash-bound, standard-library
+only, and side-effect-free. It requires `ready_for_blueprint=true` and no
+confirmation-required decision. P2-derived routes remain blocked until their
+complete source evidence can be serialized and recomputed canonically.
+Recommendations remain assumptions, stack selection remains `needs-evidence`,
+`ready_for_implementation` remains false, quality execution remains `not-run`,
+and deployment authority remains `not-authorized`.
+
+P3-B is an in-memory plan/evidence bundle. It does not create a downstream
+project, execute tasks or Gates, choose or call a provider, install a dependency,
+deploy, publish, promote, start a host/runtime, run a downstream pilot, or claim
+release acceptance. See [PROJECT_BLUEPRINT.md](PROJECT_BLUEPRINT.md) for the
+closed contract and later-phase boundary.
+
+## P3-C implementation readiness resolution
+
+P3-C follows P3-B and precedes a separately governed P3-D
+materialization-preview stage. It deterministically binds the exact canonical
+P3-B blueprint, canonical P2 `ProjectIntake`, original P2-C `StackCandidate`
+records, complete P2-D Domain Pack registry and applicability evidence, P2-E
+guided-intake inputs, and an explicit P3-A-to-P2 evidence relationship. It does
+not infer identity from independent IDs or architecture compatibility from
+similar names.
+
+Parsing recomputes the complete result. It reparses every embedded source,
+verifies canonical source digests, reruns `score_stack_candidates`, recomputes
+guided-intake compatibility, derives applicable Domain Pack IDs and
+professional Gate requirements, and rejects edited derived fields. The closed
+first-match readiness states are `source-binding-required`,
+`owner-confirmation-required`, `intake-evidence-required`,
+`stack-evidence-required`, `stack-correction-required`,
+`domain-evidence-required`, and `ready-for-materialization-preview`.
+
+Only the final state sets `ready_for_materialization_preview=true`.
+`implementation_authority` always remains `not-authorized`, and the resolver
+never changes P3-B's `ready_for_implementation=false`. An unready state is
+decision evidence, not an implementation failure or permission to fill gaps.
+
+P3-C is offline, in-memory, standard-library-only, and side-effect-free. It
+does not materialize a project, write a downstream root, execute a task or Gate,
+install dependencies, call a provider or network, launch a host/runtime, run a
+pilot, deploy, publish, promote, or release. P3-D requires its own ChangeRecord,
+bounded changed paths, baseline, approval, Gates, rollback, and acceptance;
+preview is not apply. See
+[IMPLEMENTATION_READINESS.md](IMPLEMENTATION_READINESS.md) for the canonical
+bindings, state precedence, failure posture, and rollback contract.
+
+## P3-D project materialization preview
+
+P3-D consumes an exact canonical P3-C readiness record and a complete,
+caller-supplied downstream proposal. It binds the P3-C digest, embedded P3-B
+blueprint digest, policy digest, root locator, manifest entries, pre-state,
+approval state, configured Gates, acceptance references, and rollback plan.
+It produces only a canonical preview with `preview_only=true` and
+`apply_authority=false`.
+
+Missing proposal facts become `pending-user-input`; malformed or non-ready
+P3-C evidence becomes `block`; `preview-ready` is a review state only. P3-D
+does not discover or write a downstream root, execute Gates, install a
+dependency, call a provider or network, launch runtime, deploy, publish,
+promote, pilot, release, merge, or push. See
+[PROJECT_MATERIALIZATION.md](PROJECT_MATERIALIZATION.md) for the closed
+contract and downstream authority boundary.
+
+## P3-E materialization apply transactions
+
+P3-E adds the repository-local transaction controller after P3-D. It validates
+the frozen preview and supplied manifest bytes, classifies the action, and
+performs bounded compare-and-swap writes only after the physical root and every
+pre-state assertion are verified. The primary interaction is not a sequence of
+approval forms: routine bounded and reversible local work is `AUTO`, safe
+choices may be `RECOMMEND`, and the user sees the recommended path plus the
+final evidence result.
+
+`CONFIRM` is reserved for consequences the system cannot responsibly absorb:
+provider or network access, cost or quota, credentials, real or production
+data, public delivery, runtime launch, deployment, irreversible change,
+security or privacy posture changes, and materially ambiguous direction. Such
+an approval is transaction-scoped and binds the P3-D digest, physical-root
+fingerprint, and exact write paths. Any unknown, drifted, unsafe, or
+out-of-scope fact is `BLOCK`, never implied approval.
+
+P3-E stores a separate pre-state snapshot, verifies content and post-write
+hashes, and rolls back only while post-state still matches. It does not infer a
+physical root from P3-D's logical root code, select a target, or itself access
+a provider, network, runtime, deployment, publication, promotion, pilot, or
+release surface.
+
+## P3-F autonomous task orchestration
+
+P3-F turns an exact ready P3-C record and its embedded P3-B task graph into a
+deterministic recommended path. Each task receives one bounded execution
+context with an executor, read and write scope, Gates, acceptance references,
+rollback reference, and P3-E action context. Missing, extra, unsafe, or drifted
+contexts fail closed.
+
+Routine safe tasks are `AUTO`. Safe deferred choices are `RECOMMEND`.
+Consequential P3-E boundaries, Git operations, and release are `CONFIRM`.
+Unsafe or incomplete work is `BLOCK`. P3-F automatically moves overlapping
+read/write ownership into later waves, so ordinary users are not asked to
+manually reconcile routine parallel-lane conflicts.
+
+The user-facing result is the recommended path, the next material tasks, any
+genuine consequential confirmation, and one final `ACCEPT`, `INCOMPLETE`, or
+`BLOCK` summary. Final `ACCEPT` requires complete Gate, acceptance, output, and
+rollback evidence, accepted dependencies, and a reviewer identity distinct
+from the executor. P3-F does not execute tasks or grant downstream, runtime,
+deployment, publication, Git, pilot, or release authority. See
+[AUTONOMOUS_TASK_ORCHESTRATION.md](AUTONOMOUS_TASK_ORCHESTRATION.md).
+
+## P3-G goal-to-delivery lifecycle
+
+P3-G turns the exact P3-F route into one resumable local lifecycle. It stores a
+caller-supplied run ID, the exact P3-F plan digest, dependency-closed wave
+cursor, task evidence, transaction-bound decisions and approvals, checkpoint
+sequence/digests, consolidation references, and explicit phase acceptance.
+Routine `AUTO` work advances without repeated owner interruption. `RECOMMEND`
+pauses for one task-bound decision, `CONFIRM` pauses for one transaction-bound
+approval, and unsafe or incomplete facts are `BLOCK`. Failed evidence stops the
+run and blocks dependents. Exact checkpoint replay is idempotent; changed or
+stale replay is rejected.
+
+The ordinary user sees only a concise result and next step. Repository-local
+evidence never becomes runtime, deployment, publication, promotion, pilot, or
+release acceptance. P3-G remains standard-library-only and performs no
+executor, Gate, filesystem, provider, network, credential, runtime, deployment,
+publication, promotion, pilot, release, or Git action. See
+[GOAL_DELIVERY_LIFECYCLE.md](GOAL_DELIVERY_LIFECYCLE.md).
+
+## P3-H requirement trace and consolidation
+
+P3-H turns one exact completed P3-G lifecycle into a deterministic
+`REQ-* -> P3-A -> P3-B section -> task -> artifact` trace and one concise
+combined result. It checks exact task coverage, output and consolidation
+bindings, conflicting write ownership, residual gaps, current phase evidence,
+and an independent consolidation review. A collection of individually passed
+tasks is never treated as a compatible result without that reconciliation.
+
+Routine work and trace assembly remain automatic. The ordinary-user result is
+only accepted, needs-evidence, or blocked plus the current phase and next step.
+P3-H never invents a missing decision, approval, conflict resolution, gap
+closure, phase acceptance, or review. Repository validation remains distinct
+from runtime, deployment, publication, pilot, and release acceptance. See
+[REQUIREMENT_TRACE_CONSOLIDATION.md](REQUIREMENT_TRACE_CONSOLIDATION.md).
+
+## P3-I idea-to-result session
+
+P3-I composes the exact accepted P3-A, P3-B, P3-C, P3-F, P3-G, and P3-H
+records into one resumable session. It verifies every source digest and stage
+relationship, identifies the first unresolved stage, and returns one of
+`auto`, `recommend`, `confirm`, `needs-evidence`, `block`, or `complete`.
+
+This is the beginner-facing coordinator: routine local progression produces a
+next step without another approval request, while a genuine consequential
+boundary remains explicit and transaction-scoped. Only an accepted P3-H
+combined result makes the session complete. P3-I does not run materialization,
+tasks, Gates, runtime, deployment, publication, promotion, pilot, release, or
+Git. See [IDEA_RESULT_SESSION.md](IDEA_RESULT_SESSION.md).
+
+## P3-J non-invasive target project orchestration
+
+P3-J binds one exact canonical P3-I `complete` session to a caller-supplied,
+redacted target snapshot identified only by a stable logical `target_id`. It
+derives requirement traceability, component decomposition, exact P3-F task and
+wave orchestration, capability-preservation self-checks, independent review,
+and an orchestration-scoped acceptance result.
+
+Every declared existing capability defaults to `preserve`. A capability change
+must name an explicit P3-H requirement and remains a separately governed
+target-project transaction. Capability drift is `block`; missing preservation
+evidence is `needs-evidence`; missing independent review leaves a complete plan
+at `plan-ready`. `orchestration-accepted` accepts only the plan and preservation
+evidence, not implementation or operation of the target project.
+
+P3-J never receives a physical root or raw project content and performs no
+filesystem, subprocess, network, credential, runtime, deployment, publication,
+pilot, release, or Git action. `execution_authority`,
+`target_mutation_performed`, and `execution_performed` remain false. See
+[TARGET_PROJECT_ORCHESTRATION.md](TARGET_PROJECT_ORCHESTRATION.md).
