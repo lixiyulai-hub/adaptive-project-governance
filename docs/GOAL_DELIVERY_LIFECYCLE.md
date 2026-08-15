@@ -1,4 +1,5 @@
 # P3-G Goal-to-Delivery Lifecycle
+
 P3-G is the resumable local lifecycle controller after P3-F. It consumes one
 exact canonical P3-F plan and returns a compact result for an ordinary user:
 

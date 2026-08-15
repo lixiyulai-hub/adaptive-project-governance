@@ -7,13 +7,13 @@
 | Document ID | `APG-RPD-001` |
 | Canonical name | Requirements Planning, Orchestration, and Delivery (RPD) |
 | Familiar alias | Product Requirements Document (PRD); RPD is canonical because it also binds orchestration, evidence, and delivery traceability. |
-| Version | `0.2.0` |
-| Effective date | `2026-08-13` |
-| Change ID | `adaptive-project-governance-rpd-p3-d-j-completion-alignment-v1-20260813` |
-| Approved write scope | Root-level `RPD.md` only. |
-| Pre-state | `RPD.md` version `0.1.0`, SHA-256 `add0682c1ad5872388f6166f90726ac6cbfba100839004c8cde7d394886c53e7`; the existing dirty baseline remains outside this document's ownership. |
-| Approval state | The owner authorized this one-path alignment on `2026-08-13`; no formal Approval ID was supplied or invented. |
-| Product state | P3-A through P3-J repository capabilities are implemented and repository-validated. The P3 repository-capability milestone is closed; P4 is not started. Host integration, concrete target execution, runtime, deployment, publication, promotion, pilot, and release remain separate. |
+| Version | `0.3.3` |
+| Effective date | `2026-08-15` |
+| Change ID | `adaptive-project-governance-p4-2b2a-package-version-consistency-correction-v1-20260815` |
+| Approved write scope | `project_governance/version.py`, two focused version/package tests, `RPD.md`, `docs/project-governance/CHANGELOG.md`, one bounded correction evidence directory, and the canonical `0.4.0-dev.20260814` candidate plus its retained same-volume preimage only. |
+| Pre-state | Source and packaged CLI reported `0.4.0-dev.20260813` while package `VERSION` and `MANIFEST.json` reported `0.4.0-dev.20260814`; source version SHA-256 `ac4d52ecc04675187b851ec5aa92828aa564f7158ef229a33c3b8343eb861f99`; CLI test SHA-256 `3493a4552db942e687f2f64a6c9518c205ed07f171aadafc674d1e96817d483c`; package test SHA-256 `3e0a0d241570e9fcef10b6a35adb072a3cd16811de758e236bde5b8ac9dc962c`; `RPD.md` SHA-256 `d011c8adbe68f3a635ad9e92c505fe11de8fa50c4087b26752b23524250481a6`; candidate manifest SHA-256 `1e366a81086561f6c894607045a1b4a6be4226a259961637725e6d0258d0b937`, with seven runtime pyc extras retained in the preimage. |
+| Approval state | Owner approval `OWNER-DIRECT-GITHUB-UPDATE-VERSION-CORRECTION-20260815` authorizes only the named repository correction and deterministic candidate rebuild. Global-byte correction and GitHub publication require successor exact-hash transactions. |
+| Product state | P3-A through P3-J remain repository-validated and closed. P4-1 defines the host contract, P4-2A selects Codex App, P4-2B0 defines adaptive routing, and P4-2B1 completed installed-byte and APG-managed-router disk promotion. Host reload and APG invocation remain pending. The first P4-2B2 publication attempt was blocked before commit or push by the split-version defect; this transaction corrects the repository candidate only. |
 | Normative language | ASCII identifiers and field values are preferred. The product promise below is retained verbatim. |
 
 ## Product Promise
@@ -259,8 +259,13 @@ does not satisfy a later row.
 | P3-D materialization-preview capability | Completed P3-D repository ChangeRecord. Preview remains distinct from apply. | Exact P3-C result and blueprint digests, logical root, manifest, baseline, changed paths, approvals, Gates, rollback, and acceptance. | `repository-validated` |
 | P3-E bounded apply-controller capability | Completed P3-E repository ChangeRecord. | Exact P3-D preview, manifest bytes, physical-root fingerprint, pre-state, authorization class, snapshot, post-state, and rollback. | `repository-validated`; no concrete target transaction was run in this completion audit. |
 | P3-F through P3-J orchestration capability | Completed independent repository ChangeRecords. | Canonical source chain, task ownership, lifecycle evidence, consolidation, session state, capability preservation, and independent review. | `repository-validated` |
-| Plugin host integration | New owner request and bounded host-integration ChangeRecord. | Exact plugin build, installed bytes, host identity, reload state, provider availability, invocation evidence, rollback, and host acceptance. | `not-performed`; repository completion does not require it. |
-| Concrete target-project execution | Independent exact-root ChangeRecord. | Target identity, approved scope, pre-state, transaction evidence, Gates, rollback, and target acceptance. | `not-performed`; no target project is selected for follow-up. |
+| P4-1 host-integration contract | Approved five-path documentation ChangeRecord. | Exact host identity, source and installed-byte evidence, reload state, bounded invocation, optional provider/network authority, rollback, and independent review. | `planned`; contract only, with zero host action. |
+| P4-2A first-host selection | Approved two-path host-selection ChangeRecord. | `OpenAI.Codex` package `26.803.10989.0`, current process observation, installed APG `0.3.0` manifest, candidate `0.4.0-dev.20260813` manifest, exclusions, and zero-action evidence. | `planned`; Codex App selected, with zero global or host action. |
+| P4-2B0 adaptive routing | Approved five-path repository ChangeRecord. | Canonical skill routing table, Doctor-versus-audit entry, five severity levels, disabled implicit invocation, deterministic candidate package, focused tests, and zero global action. | `repository-validated`; routing candidate built, with zero Codex global or host action. |
+| P4-2B1 installed bytes and managed router | Approved exact-global-scope promotion ChangeRecord. | Complete installed skill and global `AGENTS.md` preimages, candidate manifest, pyc rollback disposition, same-volume staging, CAS guards, backup, and post-state verification. | `disk-promotion-accepted`; APG bytes and only the APG-managed router block were promoted, with `host_reload=false` and `host_invocation=false`. |
+| P4-2B2 GitHub publication preflight | Approved GitHub-only publication ChangeRecord. | Exact remote ancestry, candidate manifest, public extras, line-ending control, staged-byte validation, rollback, and post-push readback. | `BLOCK` before commit and push because packaged CLI version did not match package `VERSION` and manifest; zero GitHub bytes changed. |
+| Plugin host execution | New exact-host ChangeRecord and owner approval. | Selected host product/version, installed-root and manifest, current process/window identity, action authority, reload and invocation evidence, cleanup, rollback, and host acceptance. | `not-authorized` |
+| Concrete target-project execution | Independent exact-root ChangeRecord. | Target identity, approved scope, pre-state, transaction evidence, Gates, rollback, and target acceptance. | `not-authorized`; no target project is selected and no execution was performed. |
 | Runtime verification | Independent runtime ChangeRecord. | Runtime scope, process ownership, configuration evidence, bounded interaction, observability, rollback, and runtime acceptance. | `not-authorized` |
 | Deployment | Independent deployment ChangeRecord. | Target class, manifest, approvals, rollback, deployment evidence, and deployment acceptance. | `not-authorized` |
 | Publication | Independent publication ChangeRecord. | Public surface, content scope, confirmation, publication evidence, and rollback or takedown plan. | `not-authorized` |
@@ -313,7 +318,13 @@ check is retained as evidence; it is not silently reclassified as a baseline.
 | `OD-004` | Runtime, deployment, publication, promotion, pilot, and release success criteria. | `not-authorized` | One independent ChangeRecord per selected boundary with phase-specific acceptance evidence. |
 | `OD-005` | Product success metrics and observability thresholds for a concrete downstream project. | `needs-evidence` | Later requirement update with measured baseline and owner confirmation. |
 | `OD-006` | Explicit named GUIDED/ENGINEERING mode equivalence and persisted shared registry. | `needs-evidence` | A future product requirement and bounded design ChangeRecord only if this capability is requested. |
-| `OD-007` | Plugin host integration or real target execution after P3. | `not-performed` | P4 is not started. A new owner request must define the desired outcome before any preview. |
+| `OD-007` | P4 host-integration acceptance contract. | `planned` | P4-1 defines the evidence and rollback contract; focused validation and independent read-only review are required, but no host execution is authorized. |
+| `OD-008` | Exact first plugin host selection. | `planned` | Windows `OpenAI.Codex` version `26.803.10989.0` is selected; the evidence is selection-only and authorizes no global or host action. |
+| `OD-009` | Real target-project execution after P3. | `not-authorized` | No execution was performed. A future exact-root request requires its own ChangeRecord and cannot reuse P4-1 authority. |
+| `OD-010` | Promote APG `0.4.0-dev.20260814` into the selected Codex App global skill root and synchronize only the APG-managed global router block. | `disk-promotion-accepted` | P4-2B1 promoted the original candidate and only the APG-managed router block. The version-consistency correction changes candidate bytes, so one successor exact-hash global correction is required before publication continues. |
+| `OD-011` | Reload the selected Codex App host after promotion. | `not-authorized` | A later reload transaction requires a fresh bindable host identity or explicit manual-restart handoff; the current read-only process observation has no bindable main window. |
+| `OD-012` | Invoke APG from the reloaded Codex App and accept host integration. | `not-authorized` | A later invocation transaction must bind the promoted manifest, reloaded host session, bounded input/output evidence, cleanup, and independent review. |
+| `OD-013` | Single adaptive routing policy for global invocation, skill severity, and project-specific Gates. | `repository-validated` | P4-2B0 binds `NONE`, `ROUTINE`, `MODERATE`, `HIGH`, and `CRITICAL`; implicit invocation is disabled, adopted projects enter through Doctor, and later global-router synchronization requires its own bounded transaction. |
 
 ## P3 Completion Evidence
 
@@ -337,42 +348,130 @@ plan-bound validation and receipt. No evidence in either transaction implies
 plugin-host, target-project, runtime, deployment, publication, promotion,
 pilot, release, or product acceptance.
 
+## P4-2A Host Selection Evidence
+
+The owner selected the Windows `OpenAI.Codex` package version
+`26.803.10989.0` as APG's first host on `2026-08-14`. The bounded evidence is
+stored under `outputs/host-integration/codex-app-host-selection-20260814`.
+
+The current APG core installation remains version `0.3.0` with manifest
+SHA-256 `9fd3e425199d1e9036149a3b7daf2ac3da7407529bfedaa5f1a1a6602e44bf1c`.
+The proposed repository candidate is `0.4.0-dev.20260813` with manifest SHA-256
+`6fedb7075fec853a2b7912ca7b840bd21a2c63d6b9cb1ebb567561eb72556bcf`.
+The read-only comparison found 65 common equal files, 6 common different files,
+25 candidate-only files, and 22 installed-only files. Those installed-only
+files have no deletion disposition and require a separate promotion plan.
+
+Codex++ version `1.2.47` is excluded from host ownership. The installed Sol/Luna
+APG Orchestrator remains an optional plugin layer. The volatile Codex process
+observation had no bindable main window, so no reload action was attempted or
+authorized. This evidence does not prove installed-byte, reload, invocation,
+runtime, deployment, publication, pilot, or release acceptance.
+
+## P4-2B0 Adaptive Routing Evidence
+
+P4-2B0 resolves the instruction-surface issue before any global promotion. The
+global router is responsible only for deciding when APG is needed. The generated
+`SKILL.md` owns severity and transaction routing. Project-local `AGENTS.md` files
+continue to own only their exact project commands and Gates.
+
+The generated skill now routes five levels:
+
+| Level | Route |
+| --- | --- |
+| `NONE` | Skip APG for non-project chat, translation, and unrelated informational work. |
+| `ROUTINE` | For a bounded adopted-project local write, run Doctor and the fast or affected check. |
+| `MODERATE` | For multi-module, shared-contract, dependency, architecture, or durable-requirement work, use Doctor, `plan-change`, approval, and focused or affected checks. |
+| `HIGH` | For global, host, plugin, provider, network, target mutation, runtime, deployment, publication, pilot, or release work, require an exact-scope transaction, owner approval, preimage evidence, drift guard, rollback, and independent review. |
+| `CRITICAL` | Add a distinct independent verifier and fail closed for destructive, irreversible, production-data, secret, identity, payment, or uncontrolled external effects. |
+
+Adopted projects enter through Doctor. Audit is reserved for unadopted projects,
+explicit adoption, or an explicitly requested fresh audit. The generated Codex
+skill metadata sets `allow_implicit_invocation: false`, preventing the skill
+description from becoming a second broad trigger.
+
+The deterministic repository candidate is
+`outputs/publication/adaptive-project-governance-v0.4.0-dev.20260814`.
+It contains 91 manifest-declared package files plus `MANIFEST.json` (92 actual
+files) and has no undeclared extras. The superseded `0.4.0-dev.20260813`
+publication directory had 96 actual files, but five publication extras
+(`LICENSE`, two README files, and two diagram files) were outside its
+`MANIFEST.json`; P4-2B0 does not treat those historical extras as package
+membership.
+P4-2B0 performs no write to the installed APG `0.3.0` root, the global
+`AGENTS.md`, Codex App, any plugin, any provider, or any target project. Its
+evidence is stored under `outputs/host-integration/adaptive-routing-20260814`.
+
+## P4-2B1 Disk Promotion and P4-2B2 Preflight Evidence
+
+P4-2B1 promoted the exact `0.4.0-dev.20260814` candidate available on
+`2026-08-14` into the global APG skill root and replaced only the APG-managed
+block in global `AGENTS.md`. The complete `0.3.0` installation, its 22 pyc
+extras, and the full prior `AGENTS.md` remain in the same-volume rollback
+transaction. The promotion receipt state is
+`DISK_PROMOTION_ACCEPTED_PENDING_HOST_RELOAD`; no host reload or invocation was
+performed.
+
+The first P4-2B2 GitHub publication transaction used a fresh isolated clone and
+stopped before staging, commit, or push when its package runtime check showed
+that `VERSION` and `MANIFEST.json` identified `0.4.0-dev.20260814` but the
+packaged CLI reported `0.4.0-dev.20260813`. The failed preflight is retained as
+evidence. This P4-2B2A correction aligns source, tests, package runtime version,
+RPD, and changelog, then rebuilds the deterministic candidate. Because its
+manifest changes, a separate exact-hash global correction must complete before
+a successor GitHub publication may proceed.
+
 ## Milestone Decision
 
-The P3 repository-capability milestone is closed. P4 is not started and is not
-required to close P3. No automatic continuation is authorized.
+The P3 repository-capability milestone remains closed. P4-1 remains the
+repository-only host-integration contract. P4-2A selects Codex App, P4-2B0
+repository-validates adaptive routing, and P4-2B1 accepts installed bytes and
+the managed router block on disk. The split-version correction reopens none of
+those capability decisions; it corrects their package identity evidence.
 
-A future owner may request a separately named milestone for plugin-host
-integration, a real target-project execution, runtime acceptance, deployment,
-pilot, or release. Such a request must begin with a new bounded ChangeRecord
-and cannot reuse this closeout as execution authority.
+The corrected manifest requires one successor exact-hash global byte sync.
+Reload, APG invocation, provider or network use, real target-project execution,
+runtime acceptance, deployment, pilot, and release remain later independent
+boundaries. GitHub publication remains blocked until the correction and global
+sync both pass.
 
 ## Approval State
 
-The approved ChangeRecord authorizes only this root-level `RPD.md` alignment.
-It does not authorize a concrete P3-D/P3-E target transaction, implementation
-outside this document, dependency changes, plugin installation or host reload,
-provider or network access, credentials, runtime activity, deployment,
-publication, promotion, pilot, release, push, merge, or any other external
-action. It authorizes no action against `CursorVIP_Dev`.
+The approved P4-2B2A ChangeRecord authorizes only the repository paths in
+Document Control. It authorizes the version fix, focused regression coverage,
+RPD and changelog alignment, deterministic candidate rebuild, retained
+candidate preimage, full validation required by the new defect, and bounded
+evidence. It does not authorize global correction, host reload or invocation,
+provider or target access, deployment, publication, pilot, release, push,
+merge, or any action against `CursorVIP_Dev`.
 
-No independent Approval ID was supplied for those later actions. Their state is
-therefore `PENDING_USER_INPUT` or `BLOCK`, never an inferred approval.
+Later actions have no transaction-specific approval. Their state is therefore
+`not-authorized`, `PENDING_USER_INPUT`, or `BLOCK`, never inferred consent.
 
 ## Change History
 
 | Version | Date | Change | Scope |
 | --- | --- | --- | --- |
+| `0.3.3` | `2026-08-15` | Correct the source and packaged CLI version to `0.4.0-dev.20260814`, record P4-2B1 disk promotion and the blocked pre-push P4-2B2 attempt, add a package-runtime regression assertion, and rebuild the candidate without claiming host or publication acceptance. | Five repository files, one bounded evidence directory, and the canonical candidate plus retained preimage. |
+| `0.3.2` | `2026-08-14` | Add P4-2B0 adaptive routing with five severity levels, adopted-project Doctor entry, unadopted-project audit entry, disabled implicit invocation, a deterministic `0.4.0-dev.20260814` candidate, and zero global or host action. | Five approved repository paths. |
+| `0.3.1` | `2026-08-14` | Select Codex App `26.803.10989.0` as APG's first host, bind installed `0.3.0` and candidate `0.4.0-dev.20260813` manifest evidence, exclude Codex++ and `CursorVIP_Dev`, and leave promotion, reload, invocation, provider/network, and later phases not-authorized. | `RPD.md` plus one bounded host-selection evidence directory. |
+| `0.3.0` | `2026-08-13` | Start P4 at P4-1 with a repository-only host-integration contract covering exact identity, installed bytes, reload, invocation, provider/network classification, independent review, failure-stop, rollback, and continued `CursorVIP_Dev` exclusion; perform zero host actions. | Five approved documentation paths. |
 | `0.2.0` | `2026-08-13` | Align P3-D through P3-J repository completion, close the P3 repository-capability milestone, record `REQ-002` residual evidence needs, preserve independent delivery boundaries, exclude further `CursorVIP_Dev` action, and leave P4 not started. | `RPD.md` only. |
 | `0.1.0` | `2026-08-10` | Initial canonical RPD for dual-mode requirements, orchestration, traceability, and delivery boundaries. | `RPD.md` only. |
 
 ## Rollback
 
-The recorded pre-state for this transaction is `RPD.md` version `0.1.0` with
-SHA-256 `add0682c1ad5872388f6166f90726ac6cbfba100839004c8cde7d394886c53e7`.
-Rollback may restore only that exact preimage and only when the live RPD hash
-equals the post-apply SHA-256 recorded by this transaction. Any hash drift
-requires a new bounded disposition.
+The P4-2B2A pre-state hashes are recorded in Document Control. The prior
+canonical candidate has manifest SHA-256
+`1e366a81086561f6c894607045a1b4a6be4226a259961637725e6d0258d0b937`
+and seven runtime pyc extras. It is retained complete under
+`outputs/publication/.p4-2b2a-version-correction-20260815/preimage` before the
+corrected candidate is promoted by same-volume rename.
+
+Rollback may restore only the five exact repository-file preimages and the
+retained candidate preimage, and only while every live correction postimage
+matches the recorded evidence. Any hash drift requires a new bounded
+disposition.
 
 Rollback must not restore, normalize, rewrite, delete, baseline, or otherwise
 modify unrelated dirty files, prior ChangeRecords, receipts, historical

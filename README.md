@@ -120,7 +120,7 @@ APG 不是新的大模型，也不替代编程代理。它是这些代理上层�
 APG 同时保留可审计的控制器接口。下面这些命令用于项目诊断、接入、变更规划和质量检查；普通用户不需要手动执行它们。
 
 ```powershell
-$apg = 'C:\Users\Administrator\.codex\skills\adaptive-project-governance\scripts\project_governance.py'
+$apg = Join-Path $env:USERPROFILE '.codex\skills\adaptive-project-governance\scripts\project_governance.py'
 python -B -X utf8 $apg doctor . --json
 python -B -X utf8 $apg audit . --json
 python -B -X utf8 $apg plan-change . --request .\change-request.json --json
@@ -244,7 +244,7 @@ Then add team collaboration and analytics reporting.
 APG also exposes auditable controller commands for diagnostics, adoption, change planning, and quality checks. Non-technical users do not need to run these manually.
 
 ```powershell
-$apg = 'C:\Users\Administrator\.codex\skills\adaptive-project-governance\scripts\project_governance.py'
+$apg = Join-Path $env:USERPROFILE '.codex\skills\adaptive-project-governance\scripts\project_governance.py'
 python -B -X utf8 $apg doctor . --json
 python -B -X utf8 $apg audit . --json
 python -B -X utf8 $apg plan-change . --request .\change-request.json --json
@@ -253,16 +253,22 @@ python -B -X utf8 $apg check . --phase full --json
 
 ### Current Public Version
 
-`v0.4.0-dev.20260813` is the APG `main` development snapshot. Its core package
-contains the repository-validated P3-A through P3-J capabilities and aligned
-`RPD.md`; `MANIFEST.json` defines the canonical core file set for independent
-hash verification. The immutable `v0.3.0` tag remains unchanged, and this
-snapshot does not create a tag or GitHub Release.
+`0.4.0-dev.20260814` is the APG `main` development snapshot. Its package has
+91 manifest-declared files plus `MANIFEST.json` (92 package files total), while
+the repository retains five public README, license, and workflow-diagram extras.
+`MANIFEST.json` SHA-256 is
+`ddbdc28adcd4de39ec24a0bf578b81ec3ab412867ce97913a68f947ef1dc8b21`.
 
-A public package does not automatically prove host integration, runtime
-activation in every client, external-provider acceptance, target-project
-execution, deployment, promotion, pilot, or formal release acceptance. Those
-stages are verified in their actual environments and remain outside this
-snapshot.
+P3-A through P3-J remain repository-validated. P4-1 defines the host contract,
+P4-2A selects the official Codex App as the first host, and P4-2B0 adds the
+adaptive `NONE`, `ROUTINE`, `MODERATE`, `HIGH`, and `CRITICAL` router. Adopted
+projects enter through `doctor`; unadopted projects use read-only `audit`; implicit
+skill invocation is disabled. The installed APG bytes and global managed routing
+block are synchronized to this candidate.
+
+Codex host reload and bounded APG host invocation remain independently pending.
+This snapshot does not prove target-project execution, runtime, deployment,
+pilot, tag, GitHub Release, or formal release acceptance. The immutable `v0.3.0`
+tag remains unchanged.
 
 See the [operator guide](docs/README.md) and [skill contract](SKILL.md).

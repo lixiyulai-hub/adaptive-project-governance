@@ -16,10 +16,38 @@
 - This GitHub `main` snapshot does not perform global installation, host reload,
   provider access, downstream execution, deployment, pilot, or formal release.
 
-## Unreleased
+## 0.4.0-dev.20260814
+
+### Fixed
+
+- Align the source and packaged CLI version with the package `VERSION` file and
+  `MANIFEST.json`; all now report `0.4.0-dev.20260814`.
+- Retain the first P4-2B2 GitHub publication attempt as a pre-push block: the
+  version mismatch was found before commit or push, so no inconsistent public
+  bytes were published.
 
 ### Added
 
+- P4-2A selects the official Codex App package `26.803.10989.0` as the first
+  host while keeping Codex++, `CursorVIP_Dev`, and optional plugins outside the
+  APG core-host boundary.
+- P4-2B0 adds the adaptive `NONE`, `ROUTINE`, `MODERATE`, `HIGH`, and `CRITICAL`
+  router, adopted-project Doctor entry, unadopted-project audit entry, and
+  `allow_implicit_invocation: false`.
+- P4-2B1 promotes the manifest-bound APG package and only the APG-managed global
+  routing block. Disk promotion is accepted; host reload and APG invocation
+  remain separate and pending.
+- P4-1 adds a repository-only Host Integration Contract and Acceptance Plan
+  for exact host identity, source and installed-byte binding, reload evidence,
+  bounded APG invocation, optional provider/network classification,
+  first-failure-stop behavior, independent review, and compare-and-swap
+  rollback.
+- P4-1 remains `planned`: no host was selected or changed, no plugin was
+  installed or promoted, no process was reloaded, no APG invocation or
+  provider/network call occurred, and no target project, runtime, deployment,
+  pilot, release, or Git action was performed.
+- `CursorVIP_Dev` remains excluded as a completed historical test carrier and
+  is not a P4 host, target, pilot, or dependency.
 - P3-J adds a pure Non-Invasive Target Project Orchestration Controller that
   binds exact canonical P3-I `complete` evidence to a caller-supplied redacted
   target capability/component snapshot without receiving a physical root.

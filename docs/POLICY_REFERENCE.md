@@ -1292,3 +1292,57 @@ deployment, publication, promotion, pilot, release, or Git action.
 `execution_performed` MUST remain false. `orchestration-accepted` MUST NOT be
 represented as implementation, runtime, deployment, publication, pilot, release,
 or product acceptance.
+
+## P4-1 host-integration acceptance contract
+
+P4-1 MUST remain a repository planning contract until a later owner-approved
+host transaction binds one exact host product and version, installation class,
+installed-root locator, current process and window identity where applicable,
+one exact APG source manifest, and one exact destination manifest. The contract
+MUST NOT select a host or authorize installation, promotion, reload,
+invocation, provider/network access, target execution, runtime, deployment,
+publication, pilot, release, or Git action.
+
+Host integration MUST use separate ordered evidence for host selection,
+installed bytes, reload, invocation, optional provider/network use, cleanup,
+rollback, and independent acceptance. Disk presence MUST NOT imply reload;
+reload MUST NOT imply invocation; invocation MUST NOT imply target-project,
+runtime, deployment, publication, promotion, pilot, release, or product
+acceptance.
+
+Installed-byte evidence MUST bind the approved source artifact and manifest to
+every transaction-owned destination path, including expected pre-state and
+post-state SHA-256 values, destination ownership, missing or extra path
+treatment, and complete byte comparison. Source drift, destination drift,
+aliasing, missing ownership, or an unapproved path MUST be `BLOCK`.
+
+Reload evidence MUST use current pre-action process and window identity, an
+exact approved reload method, action timestamps, post-action identity and byte
+binding, relevant child-process or listener ownership, and cleanup state. An
+absent or ambiguous identity, incomplete action, timeout, unexpected ownership,
+post-state drift, or cleanup failure MUST be `BLOCK` and MUST cause no wider
+process action.
+
+Invocation evidence MUST bind the exact reloaded host session, approved APG
+entry point, installed manifest digest, bounded non-secret input, expected
+observable result, timestamps, redacted output evidence, installed-source
+binding, and cleanup. Discovery, menu presence, command listing, self-report,
+or provider success alone MUST NOT count as invocation acceptance.
+
+Provider and network use MUST default to false. When required, it MUST use a
+separate owner confirmation that binds provider class, network scope, cost or
+quota, request and retry bounds, timeout, evidence, and cleanup. Secret values,
+tokens, account data, callback payloads, machine identifiers, and production
+data MUST NOT be persisted in governance evidence.
+
+The transaction MUST use first-failure-stop and retain failed or inconclusive
+evidence. Timeout MUST NOT count as pass. Rollback MUST be compare-and-swap
+bounded to captured preimages and paths proven absent before the transaction;
+live post-state drift MUST be `BLOCK`. Rollback MUST NOT change unrelated host
+data, accounts, tokens, network or security posture, machine identity, the APG
+repository baseline, or any target project.
+
+Host acceptance MUST be exactly `ACCEPT` or `BLOCK` from a reviewer distinct
+from the executor. `ACCEPT` is scoped only to the exact approved APG build and
+host transaction. `CursorVIP_Dev` remains an excluded historical test carrier
+and MUST NOT be treated as a P4 host, target, pilot, or dependency.

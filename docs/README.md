@@ -682,3 +682,17 @@ filesystem, subprocess, network, credential, runtime, deployment, publication,
 pilot, release, or Git action. `execution_authority`,
 `target_mutation_performed`, and `execution_performed` remain false. See
 [TARGET_PROJECT_ORCHESTRATION.md](TARGET_PROJECT_ORCHESTRATION.md).
+
+## P4-1 host integration contract
+
+P4-1 defines the acceptance plan for binding one exact APG build to one exact
+plugin host. It separates host selection, installed-byte verification, reload,
+bounded APG invocation, optional provider or network use, independent review,
+and compare-and-swap rollback into distinct evidence and authority boundaries.
+
+The contract is `planned` repository documentation only. It does not select or
+modify a host, install or promote a plugin, reload a process, invoke APG, access
+a provider or network, execute a target project, launch runtime, deploy,
+publish, pilot, or release. Repository validation and installed files alone do
+not establish host acceptance. See
+[HOST_INTEGRATION_ACCEPTANCE.md](HOST_INTEGRATION_ACCEPTANCE.md).
