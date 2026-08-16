@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.5.0-dev.20260816
+
+### Added
+
+- P5-A adds the deterministic offline specification-convergence controller for
+  prioritized clarification, requirements-quality checklists, cross-artifact
+  plan analysis, explicit prompt routing, and bounded convergence.
+- Beginner-facing aliases `/plan`, `/clarify`, `/checklist`, `/analyze`,
+  `/converge`, and `/implement` now have an explicit authority contract.
+- Planning aliases proceed automatically. A safe bounded `/implement` route may
+  self-authorize local reversible work without redundant approval; consequential
+  work remains `CONFIRM`, and incomplete or unsafe work is `BLOCK`.
+- The generated skill package allows implicit invocation so ordinary beginners
+  can reach APG without manually naming the skill. Invocation does not grant
+  write authority.
+- The deterministic development candidate version is
+  `0.5.0-dev.20260816`; the accepted `0.4.0-dev.20260814` candidate remains
+  unchanged.
+
+### Compatibility
+
+- P3-E `AUTO`, `RECOMMEND`, `CONFIRM`, and `BLOCK` semantics remain the action
+  authority source. P5-A only removes redundant routine interruptions on the
+  explicit bounded local route.
+- Exact-root binding, bounded scope, Gates, rollback, evidence, compare-and-
+  swap, phase isolation, host integration, target execution, runtime,
+  deployment, publication, pilot, and release remain separate boundaries.
+- P5-A performs no global promotion, Codex reload or invocation, target
+  execution, deployment, pilot, GitHub publication, tag, or formal release.
+
 ## 0.4.0-dev.20260813
 
 ### Added

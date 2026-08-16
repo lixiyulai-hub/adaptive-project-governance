@@ -1,6 +1,6 @@
 ---
 name: adaptive-project-governance
-description: Route software-project governance by project state and risk before repository writes or external actions. Use for governance diagnosis, adoption, structural planning, quality gates, global or host changes, target-project mutation, runtime, deployment, publication, pilot, or release work. Skip ordinary chat, translation, and unrelated informational requests.
+description: Route software-project governance by project state and risk before repository writes or external actions. Use for governance diagnosis, adoption, specification planning, quality gates, global or host changes, target-project mutation, runtime, deployment, publication, pilot, or release work. Skip ordinary chat, translation, and unrelated informational requests.
 ---
 
 # Adaptive Project Governance
@@ -24,6 +24,20 @@ or a fresh audit was explicitly requested. For an unadopted project, run read-on
 
 Preview is not authorization. Keep writes inside the approved scope, preserve unrelated
 state, and never infer host, provider, runtime, deployment, publication, pilot, or release
-acceptance from repository checks. This skill does not itself authorize any global or
-external action. It is a local installable framework, not a resident daemon or a promise
-of zero bugs.
+acceptance from repository checks. Explicit `/implement` may receive bounded AUTO execution
+authority only after the controller proves exact root, write scope, Gates, rollback,
+reversibility, secret safety, and a safe P3-E ActionContext. Consequential work remains
+`CONFIRM`; incomplete or unsafe work is `BLOCK`.
+
+## Beginner prompt aliases
+
+The global router may invoke this skill implicitly for a non-trivial project request.
+Recognized explicit aliases are `/plan`, `/clarify`, `/checklist`, `/analyze`, `/converge`,
+and `/implement`. The first five aliases receive automatic planning authority and do not
+ask the owner to approve routine planning. `/implement` receives automatic execution
+authority only for the bounded local route above; it cannot widen scope or skip evidence,
+Gates, rollback, phase, or consequence boundaries. The controller never executes a task,
+mutates a file, calls a provider, deploys, publishes, pilots, or releases by itself.
+
+This skill does not itself authorize any global or external action. It is a local
+installable framework, not a resident daemon or a promise of zero bugs.

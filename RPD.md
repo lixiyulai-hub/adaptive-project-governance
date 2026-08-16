@@ -7,13 +7,13 @@
 | Document ID | `APG-RPD-001` |
 | Canonical name | Requirements Planning, Orchestration, and Delivery (RPD) |
 | Familiar alias | Product Requirements Document (PRD); RPD is canonical because it also binds orchestration, evidence, and delivery traceability. |
-| Version | `0.3.3` |
-| Effective date | `2026-08-15` |
-| Change ID | `adaptive-project-governance-p4-2b2a-package-version-consistency-correction-v1-20260815` |
-| Approved write scope | `project_governance/version.py`, two focused version/package tests, `RPD.md`, `docs/project-governance/CHANGELOG.md`, one bounded correction evidence directory, and the canonical `0.4.0-dev.20260814` candidate plus its retained same-volume preimage only. |
-| Pre-state | Source and packaged CLI reported `0.4.0-dev.20260813` while package `VERSION` and `MANIFEST.json` reported `0.4.0-dev.20260814`; source version SHA-256 `ac4d52ecc04675187b851ec5aa92828aa564f7158ef229a33c3b8343eb861f99`; CLI test SHA-256 `3493a4552db942e687f2f64a6c9518c205ed07f171aadafc674d1e96817d483c`; package test SHA-256 `3e0a0d241570e9fcef10b6a35adb072a3cd16811de758e236bde5b8ac9dc962c`; `RPD.md` SHA-256 `d011c8adbe68f3a635ad9e92c505fe11de8fa50c4087b26752b23524250481a6`; candidate manifest SHA-256 `1e366a81086561f6c894607045a1b4a6be4226a259961637725e6d0258d0b937`, with seven runtime pyc extras retained in the preimage. |
-| Approval state | Owner approval `OWNER-DIRECT-GITHUB-UPDATE-VERSION-CORRECTION-20260815` authorizes only the named repository correction and deterministic candidate rebuild. Global-byte correction and GitHub publication require successor exact-hash transactions. |
-| Product state | P3-A through P3-J remain repository-validated and closed. P4-1 defines the host contract, P4-2A selects Codex App, P4-2B0 defines adaptive routing, and P4-2B1 completed installed-byte and APG-managed-router disk promotion. Host reload and APG invocation remain pending. The first P4-2B2 publication attempt was blocked before commit or push by the split-version defect; this transaction corrects the repository candidate only. |
+| Version | `0.4.0` |
+| Effective date | `2026-08-16` |
+| Change ID | `adaptive-project-governance-p5-a-spec-driven-beginner-autonomy-v1-20260816` |
+| Approved write scope | The P5-A ChangeRecord scope: the specification convergence controller and tests, package version and builder, skill-package contract, `RPD.md`, project-governance documentation, and the new `0.5.0-dev.20260816` candidate only. |
+| Pre-state | The accepted `0.4.0-dev.20260814` candidate, all historical receipts and dirty state, and the P4-2B0/P4-2B1 routing and disk evidence are preserved. Exact P5-A preimages and approval are recorded in the applied ChangeRecord and receipt. |
+| Approval state | Owner approval `OWNER-DIRECT-P5-A-SPEC-DRIVEN-BEGINNER-AUTONOMY-20260816` authorizes only the named repository paths and bounded candidate build. Global promotion, host reload or invocation, target execution, deployment, pilot, publication, and release require separate transactions. |
+| Product state | P3-A through P3-J remain repository-validated and closed. P4-1 through P4-2B1 remain historical host and disk boundaries. P5-A adds deterministic specification convergence and beginner prompt autonomy while retaining consequence confirmations and phase isolation. |
 | Normative language | ASCII identifiers and field values are preferred. The product promise below is retained verbatim. |
 
 ## Product Promise
@@ -42,6 +42,11 @@ This RPD defines:
   parallel execution, consolidation, gap closure, and observable acceptance;
 - the authority boundary for configuration, secrets, providers, network,
   real data, cost, deployment, publication, promotion, pilot, and release;
+- deterministic clarification, requirements-quality checklist, cross-artifact
+  plan analysis, bounded convergence, and explicit beginner prompt aliases;
+- automatic planning and bounded local implementation without redundant routine
+  approval, while retaining confirmation for consequential work and blocking
+  incomplete or unsafe work;
 - separate acceptance states for repository-local validation, runtime,
   deployment, publication, pilot, and release.
 
@@ -75,7 +80,7 @@ owner confirmation, canonical source binding, or acceptance evidence.
 | --- | --- | --- | --- |
 | Starting point | One natural-language idea and desired result. | A product goal plus repository, interface, architecture, stack, compatibility, test, performance, operational, or delivery constraints. | Normalize to bounded requirement statements and evidence references; do not retain raw input as the durable record. |
 | Questions | Ask only questions that could change outcome, risk, scope, or acceptance. Explain defaults in plain language. | Accept concise constraints and request only missing facts that block a decision or evidence binding. | Record each resolved fact against the same `REQ-*` item and source reference. |
-| Defaults | May propose safe defaults as `RECOMMEND`. | May compare alternatives as `RECOMMEND`. | A recommendation never becomes an owner decision without required confirmation. |
+| Defaults | May propose safe defaults as `RECOMMEND`. | May compare alternatives as `RECOMMEND`. | A consequential recommendation still requires confirmation; an explicit bounded local `/implement` route may select a safe `RECOMMEND` default without a redundant interruption. |
 | Consequential action | Stop at `CONFIRM` and explain the impact. | Stop at `CONFIRM` with the relevant technical scope and evidence need. | Cost, external access, security, data, and delivery boundaries are identical in both modes. |
 | Output | A reviewable outcome, requirements, and next decision. | A reviewable constraint set, requirements, and next decision. | The canonical output is the registry plus bound P3 records, not a mode-specific document. |
 
@@ -125,6 +130,8 @@ Each requirement has these required fields:
 | `REQ-009` | delivery | Hand P3-D materialization and downstream project creation to an independent, exact-root transaction. | GUIDED, ENGINEERING | `RPD-P3D` | CONFIRM | P0 | A P3-D proposal binds exact P3-C and blueprint digests, root, manifest, baseline, changed paths, Gates, rollback, and acceptance. | P3-D preview; P3-E apply controller. | Repository-validated preview and bounded apply-controller contracts; no concrete target transaction was run in this completion audit. | repository-validated |
 | `REQ-010` | delivery | Keep runtime, deployment, publication, promotion, downstream pilot, and release as separate evidence and approval boundaries. | GUIDED, ENGINEERING | `RPD-DELIVERY-BOUNDARIES` | CONFIRM | P0 | Each boundary has its own authority, execution record, rollback, and acceptance evidence. | P3-G, P3-H, P3-I, P3-J. | Repository-validated phase-isolation contracts; later execution phases are not performed or accepted. | repository-validated |
 | `REQ-011` | acceptance | Require observable acceptance evidence and independent review; reject self-assertion as final proof. | GUIDED, ENGINEERING | `RPD-EVIDENCE` | AUTO | P0 | An independent reviewer can return `ACCEPT` or `BLOCK` against the requirement and cited evidence. | P3-F, P3-G, P3-H, P3-J; configured Gates. | Independent-review contracts, plan-bound Gate receipt, and independent read-only review. | repository-validated |
+| `REQ-012` | specification | Provide one deterministic offline specification-convergence controller for clarification, requirements-quality checks, cross-artifact planning analysis, and bounded iterative convergence. | GUIDED, ENGINEERING | `RPD-SPEC-DRIVEN-CONVERGENCE` | AUTO | P0 | The controller emits bounded canonical records, at most five prioritized clarification questions, explicit planning findings, and `COMPLETE`, `CONTINUE`, `CONFIRM`, or `BLOCK` without executing work or widening authority. | P5-A. | `project_governance/spec_driven_convergence.py`, focused tests, and the P5-A candidate manifest. | repository-validated |
+| `REQ-013` | interaction | Let beginners use explicit `/plan`, `/clarify`, `/checklist`, `/analyze`, `/converge`, and `/implement` prompts without becoming routine approval operators. | GUIDED, ENGINEERING | `RPD-BEGINNER-AUTONOMY` | AUTO | P0 | Planning aliases are automatic; `/implement` is automatic only for an exact-root, bounded, reversible, gated, rollback-bound, secret-safe local route; consequential work is `CONFIRM` and incomplete or unsafe work is `BLOCK`. | P5-A; later host and target phases remain independent. | Route tests, generated skill contract, package manifest, and Doctor evidence. | repository-validated |
 
 `repository-validated` in this registry means that the APG contract and its
 repository tests passed their bounded acceptance. It does not mean that a
@@ -261,7 +268,7 @@ does not satisfy a later row.
 | P3-F through P3-J orchestration capability | Completed independent repository ChangeRecords. | Canonical source chain, task ownership, lifecycle evidence, consolidation, session state, capability preservation, and independent review. | `repository-validated` |
 | P4-1 host-integration contract | Approved five-path documentation ChangeRecord. | Exact host identity, source and installed-byte evidence, reload state, bounded invocation, optional provider/network authority, rollback, and independent review. | `planned`; contract only, with zero host action. |
 | P4-2A first-host selection | Approved two-path host-selection ChangeRecord. | `OpenAI.Codex` package `26.803.10989.0`, current process observation, installed APG `0.3.0` manifest, candidate `0.4.0-dev.20260813` manifest, exclusions, and zero-action evidence. | `planned`; Codex App selected, with zero global or host action. |
-| P4-2B0 adaptive routing | Approved five-path repository ChangeRecord. | Canonical skill routing table, Doctor-versus-audit entry, five severity levels, disabled implicit invocation, deterministic candidate package, focused tests, and zero global action. | `repository-validated`; routing candidate built, with zero Codex global or host action. |
+| P4-2B0 adaptive routing | Approved five-path repository ChangeRecord. | Canonical skill routing table, Doctor-versus-audit entry, five severity levels, initial disabled implicit invocation, deterministic candidate package, focused tests, and zero global action. | `repository-validated`; routing candidate built, with zero Codex global or host action. P5-A is the successor repository contract for beginner prompt aliases and bounded implicit invocation. |
 | P4-2B1 installed bytes and managed router | Approved exact-global-scope promotion ChangeRecord. | Complete installed skill and global `AGENTS.md` preimages, candidate manifest, pyc rollback disposition, same-volume staging, CAS guards, backup, and post-state verification. | `disk-promotion-accepted`; APG bytes and only the APG-managed router block were promoted, with `host_reload=false` and `host_invocation=false`. |
 | P4-2B2 GitHub publication preflight | Approved GitHub-only publication ChangeRecord. | Exact remote ancestry, candidate manifest, public extras, line-ending control, staged-byte validation, rollback, and post-push readback. | `BLOCK` before commit and push because packaged CLI version did not match package `VERSION` and manifest; zero GitHub bytes changed. |
 | Plugin host execution | New exact-host ChangeRecord and owner approval. | Selected host product/version, installed-root and manifest, current process/window identity, action authority, reload and invocation evidence, cleanup, rollback, and host acceptance. | `not-authorized` |
@@ -324,7 +331,7 @@ check is retained as evidence; it is not silently reclassified as a baseline.
 | `OD-010` | Promote APG `0.4.0-dev.20260814` into the selected Codex App global skill root and synchronize only the APG-managed global router block. | `disk-promotion-accepted` | P4-2B1 promoted the original candidate and only the APG-managed router block. The version-consistency correction changes candidate bytes, so one successor exact-hash global correction is required before publication continues. |
 | `OD-011` | Reload the selected Codex App host after promotion. | `not-authorized` | A later reload transaction requires a fresh bindable host identity or explicit manual-restart handoff; the current read-only process observation has no bindable main window. |
 | `OD-012` | Invoke APG from the reloaded Codex App and accept host integration. | `not-authorized` | A later invocation transaction must bind the promoted manifest, reloaded host session, bounded input/output evidence, cleanup, and independent review. |
-| `OD-013` | Single adaptive routing policy for global invocation, skill severity, and project-specific Gates. | `repository-validated` | P4-2B0 binds `NONE`, `ROUTINE`, `MODERATE`, `HIGH`, and `CRITICAL`; implicit invocation is disabled, adopted projects enter through Doctor, and later global-router synchronization requires its own bounded transaction. |
+| `OD-013` | Single adaptive routing policy for global invocation, skill severity, and project-specific Gates. | `repository-validated` | P4-2B0 binds `NONE`, `ROUTINE`, `MODERATE`, `HIGH`, and `CRITICAL`; P5-A permits implicit beginner-facing invocation and explicit planning aliases, while adopted projects still enter through Doctor and bounded implementation still requires controller checks. |
 
 ## P3 Completion Evidence
 
@@ -452,6 +459,7 @@ Later actions have no transaction-specific approval. Their state is therefore
 
 | Version | Date | Change | Scope |
 | --- | --- | --- | --- |
+| `0.4.0` | `2026-08-16` | Add P5-A deterministic specification convergence, beginner prompt aliases, bounded automatic local implementation, consequential confirmation, incomplete-work blocking, generated implicit-invocation metadata, and the `0.5.0-dev.20260816` repository candidate. | P5-A controller, tests, package contract, documentation, and one new candidate; no global or external action. |
 | `0.3.3` | `2026-08-15` | Correct the source and packaged CLI version to `0.4.0-dev.20260814`, record P4-2B1 disk promotion and the blocked pre-push P4-2B2 attempt, add a package-runtime regression assertion, and rebuild the candidate without claiming host or publication acceptance. | Five repository files, one bounded evidence directory, and the canonical candidate plus retained preimage. |
 | `0.3.2` | `2026-08-14` | Add P4-2B0 adaptive routing with five severity levels, adopted-project Doctor entry, unadopted-project audit entry, disabled implicit invocation, a deterministic `0.4.0-dev.20260814` candidate, and zero global or host action. | Five approved repository paths. |
 | `0.3.1` | `2026-08-14` | Select Codex App `26.803.10989.0` as APG's first host, bind installed `0.3.0` and candidate `0.4.0-dev.20260813` manifest evidence, exclude Codex++ and `CursorVIP_Dev`, and leave promotion, reload, invocation, provider/network, and later phases not-authorized. | `RPD.md` plus one bounded host-selection evidence directory. |
@@ -477,3 +485,55 @@ Rollback must not restore, normalize, rewrite, delete, baseline, or otherwise
 modify unrelated dirty files, prior ChangeRecords, receipts, historical
 evidence, generated outputs, P3-A through P3-J records, plugins,
 `CursorVIP_Dev`, target projects, or external artifacts.
+
+## P5-A specification convergence and beginner autonomy
+
+P5-A is the repository capability that absorbs the useful workflow shape of
+specification-first development without copying or vendoring any external
+tool. APG remains the authority, evidence, rollback, and consequence-boundary
+controller; free-form Markdown and prompt text are never canonical authority.
+
+The pure controller in `project_governance/spec_driven_convergence.py` exposes
+five bounded surfaces:
+
+1. `clarify_requirements` prioritizes missing acceptance, scope, boundary,
+   dependency, data, and other material gaps and emits at most five canonical
+   questions without retaining raw prompts, transcripts, PII, credentials, or
+   unbounded prose.
+2. `evaluate_requirement_checklist` checks specification quality: acceptance
+   coverage, evidence binding, dependency closure, ambiguity, and boundary
+   declaration. It does not claim implementation success.
+3. `analyze_planning_consistency` cross-checks requirements and tasks for
+   uncovered or orphan records, unknown dependencies, cycles, missing Gates or
+   rollback, missing outputs, and overlapping ownership.
+4. `route_prompt_execution` recognizes explicit `/plan`, `/clarify`,
+   `/checklist`, `/analyze`, `/converge`, and `/implement` aliases. The first
+   five are automatic planning. `/implement` can be automatic only when exact
+   root, bounded write scope, readiness, Gates, rollback, reversibility,
+   secret safety, and the P3-E `ActionContext` all prove a safe local path.
+5. `build_convergence_plan` returns only `COMPLETE`, `CONTINUE`, `CONFIRM`, or
+   `BLOCK` under a maximum eight-iteration budget. It never executes a task,
+   mutates a file, calls a provider, uses a network, deploys, publishes,
+   pilots, releases, or widens authority.
+
+The beginner policy is layered rather than indiscriminately permissive:
+
+| Route | Controller result | User experience |
+| --- | --- | --- |
+| Explicit planning alias | `AUTO` planning authority | Continue without redundant approval. |
+| Explicit `/implement`, safe local facts complete | `AUTO` execution authority | Execute only the exact bounded reversible local work. |
+| Explicit `/implement`, safe alternative only | `AUTO` with selected default | Use the safe default and record the recommendation. |
+| Consequential or materially ambiguous work | `CONFIRM` | Ask for the missing transaction-specific decision. |
+| Missing root, scope, Gates, rollback, readiness, or secret safety | `BLOCK` | Explain the missing fact; do not guess or execute. |
+
+This policy reduces routine approval burden for beginners without weakening
+P3-E action classification, exact-root binding, write ownership, evidence,
+compare-and-swap, rollback, phase isolation, or the later host/target/runtime/
+deployment/publication/pilot/release boundaries. The installable skill package
+sets `allow_implicit_invocation: true` so a beginner's non-trivial project
+request can reach the controller; invocation is not execution authority.
+
+P5-A repository acceptance is limited to focused tests, affected package and
+version tests, required project validation, deterministic candidate checks, and
+Doctor. No global promotion, host reload or invocation, target execution,
+deployment, pilot, publication, or formal release is implied.

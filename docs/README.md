@@ -696,3 +696,27 @@ a provider or network, execute a target project, launch runtime, deploy,
 publish, pilot, or release. Repository validation and installed files alone do
 not establish host acceptance. See
 [HOST_INTEGRATION_ACCEPTANCE.md](HOST_INTEGRATION_ACCEPTANCE.md).
+
+## P5-A specification-driven beginner autonomy
+
+P5-A adds a pure specification-convergence controller in
+[`SPEC_DRIVEN_CONVERGENCE.md`](SPEC_DRIVEN_CONVERGENCE.md). It gives beginner
+requests one deterministic path through clarification, a requirements-quality
+checklist, cross-artifact planning analysis, prompt routing, and bounded
+convergence. The controller recognizes `/plan`, `/clarify`, `/checklist`,
+`/analyze`, `/converge`, and `/implement`.
+
+The planning aliases receive automatic planning authority, so routine planning
+does not become an approval queue. `/implement` can receive automatic execution
+authority only for an exact-root, bounded, reversible, offline, secret-safe,
+Gate-bound, rollback-bound local path proven by P3-E `ActionContext`. A safe
+`RECOMMEND` default is selected automatically on that route. Network, provider,
+credentials, cost, real data, runtime, deployment, security or privacy changes,
+Git mutation, release, irreversible work, and material ambiguity remain
+`CONFIRM`; missing root, scope, readiness, Gates, rollback, or secret safety is
+`BLOCK`.
+
+The generated package allows implicit invocation so a beginner's non-trivial
+project request can reach APG. That metadata changes invocation only; it never
+grants write authority or bypasses exact scope, evidence, CAS, rollback, phase,
+host, target, runtime, deployment, publication, pilot, or release boundaries.

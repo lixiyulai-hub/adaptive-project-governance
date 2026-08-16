@@ -26,26 +26,21 @@ APG 保留历史收据和失败记录。遇到未知漂移、范围超出、关�
 
 ## 证据边界
 
-本仓库 `main` 发布的是 APG `0.4.0-dev.20260814` 开发快照。核心包包含 91 个 manifest 声明文件以及 `MANIFEST.json`，共 92 个包文件；仓库另外保留 5 个公共 README、许可证和流程图文件。P3-A 至 P3-J 保持仓库验证完成，P4-1 定义宿主集成契约，P4-2A 选择官方 Codex App 作为首个宿主，P4-2B0 增加 `NONE`、`ROUTINE`、`MODERATE`、`HIGH` 和 `CRITICAL` 自适应路由。已治理项目从 `doctor` 进入，未治理项目从只读 `audit` 进入，并关闭隐式 skill 调用。APG 安装字节和全局 managed 路由块已经同步到该候选版本。
+本仓库 `main` 发布 APG `0.5.0-dev.20260816` 开发快照。核心包包含 93 个 manifest 声明文件以及 `MANIFEST.json`，共 94 个包文件；仓库另外保留 5 个公共 README、许可证和流程图文件，总计 99 个公开文件。
 
-Codex 宿主 reload 与有界 APG 宿主 invocation 仍需独立验收。这个 GitHub 快照不自动证明：
+P5-A 增加确定性的规格澄清、需求质量清单、计划一致性分析、有限收敛，以及 `/plan`、`/clarify`、`/checklist`、`/analyze`、`/converge`、`/implement` 新手路由。规划提示词自动继续；`/implement` 只有在精确根目录、限定写集、Gates、回滚、可逆性和安全事实全部成立时才自动执行。网络、凭据、成本、真实数据、runtime、deployment、Git、release 和其他后果边界仍需独立确认。
 
-- 宿主已经 reload 或成功调用 APG；
-- runtime 已加载并验收新版本；
-- provider、模型、网络端点或外部服务可用；
-- 任何目标项目已经执行、部署、试点或正式发布；
-- 已经创建正式 tag 或 GitHub Release。
+GitHub 同步不自动升级全局 APG。全局安装在独立 P5-C 事务应用前仍为 `0.4.0-dev.20260814`。这个 GitHub 快照也不自动证明宿主已经 reload 或调用新版本、目标项目已经执行、runtime 已验收、provider 可用、项目已经部署或试点，或者已经创建正式 tag 和 GitHub Release。
 
-这些阶段必须使用独立的 Change ID、授权、前置检查、成功证据、独立验收和回滚方案。
-
+这些阶段继续使用独立的 Change ID、实时前镜像、成功证据、CAS 和回滚方案。
 ## 当前版本
 
-- 版本：`0.4.0-dev.20260814`
-- Manifest 声明文件数：91
-- 核心包实际文件数：92（包含 `MANIFEST.json`）
-- 仓库公共文件总数：97
-- `MANIFEST.json` SHA-256：`ddbdc28adcd4de39ec24a0bf578b81ec3ab412867ce97913a68f947ef1dc8b21`
-- 离线 guided-intake 示例：6 个
+- 版本：`0.5.0-dev.20260816`
+- Manifest 声明文件数：93
+- 核心包实际文件数：94（包含 `MANIFEST.json`）
+- 仓库公共文件总数：99
+- `MANIFEST.json` SHA-256：`bced0d83e5b0310aeabf9d003488e00af7b72c82b079446e86d8f4db66bcb62f`
+- 隐式调用：允许进入 APG；不等于写入授权
 - 运行方式：开发快照、本地、离线、证据优先
 
 不可变的 `v0.3.0` tag 保持不变；本次同步不创建 tag 或 GitHub Release。

@@ -129,12 +129,13 @@ python -B -X utf8 $apg check . --phase full --json
 
 ### 当前公开版本
 
-`v0.3.0` 是当前已接受的 APG 核心包。`MANIFEST.json` 定义规范文件集合并支持独立哈希验证。对 `main` 分支的介绍和工程图更新不会重写不可变的 `v0.3.0` 标签。
+`0.5.0-dev.20260816` 是 APG `main` 的当前开发快照。核心包包含 93 个 manifest 声明文件以及 `MANIFEST.json`，共 94 个包文件；仓库另外保留 5 个公共 README、许可证和流程图文件，总计 99 个公开文件。`MANIFEST.json` SHA-256 是 `bced0d83e5b0310aeabf9d003488e00af7b72c82b079446e86d8f4db66bcb62f`。
 
-公开包完成不自动等于所有客户端运行时、外部 provider 或下游项目试点已经完成；这些状态会在实际使用环境中分别验证。
+P5-A 增加规格澄清、需求质量清单、计划一致性分析、有限收敛循环，以及 `/plan`、`/clarify`、`/checklist`、`/analyze`、`/converge`、`/implement` 新手提示词路由。规划提示词自动继续；只有精确根目录、限定写集、Gates、回滚和安全事实完整的本地 `/implement` 才能自动执行。网络、凭据、成本、真实数据、部署、Git 和 release 等后果边界仍需单独确认。
+
+GitHub 同步不等于全局升级。全局 APG 在独立 P5-C 事务应用前仍保持 `0.4.0-dev.20260814`；宿主 reload、调用、目标项目、部署、试点和正式 release 也继续独立验收。不可变的 `v0.3.0` tag 保持不变，本次同步不创建 tag 或 GitHub Release。
 
 查看 [操作指南](docs/README.md) 和 [技能契约](SKILL.md)。
-
 ---
 
 ## English
@@ -253,22 +254,10 @@ python -B -X utf8 $apg check . --phase full --json
 
 ### Current Public Version
 
-`0.4.0-dev.20260814` is the APG `main` development snapshot. Its package has
-91 manifest-declared files plus `MANIFEST.json` (92 package files total), while
-the repository retains five public README, license, and workflow-diagram extras.
-`MANIFEST.json` SHA-256 is
-`ddbdc28adcd4de39ec24a0bf578b81ec3ab412867ce97913a68f947ef1dc8b21`.
+`0.5.0-dev.20260816` is the current APG `main` development snapshot. Its package has 93 manifest-declared files plus `MANIFEST.json` (94 package files total), while the repository retains five public README, license, and workflow-diagram extras for 99 public files. `MANIFEST.json` SHA-256 is `bced0d83e5b0310aeabf9d003488e00af7b72c82b079446e86d8f4db66bcb62f`.
 
-P3-A through P3-J remain repository-validated. P4-1 defines the host contract,
-P4-2A selects the official Codex App as the first host, and P4-2B0 adds the
-adaptive `NONE`, `ROUTINE`, `MODERATE`, `HIGH`, and `CRITICAL` router. Adopted
-projects enter through `doctor`; unadopted projects use read-only `audit`; implicit
-skill invocation is disabled. The installed APG bytes and global managed routing
-block are synchronized to this candidate.
+P5-A adds prioritized clarification, requirements-quality checklists, cross-artifact planning analysis, bounded convergence, and explicit `/plan`, `/clarify`, `/checklist`, `/analyze`, `/converge`, and `/implement` beginner routes. Planning routes proceed automatically. `/implement` is automatic only for an exact-root, bounded, reversible, Gate-bound, rollback-bound safe local path; network, credentials, cost, real data, deployment, Git, release, and other consequential boundaries still require separate confirmation.
 
-Codex host reload and bounded APG host invocation remain independently pending.
-This snapshot does not prove target-project execution, runtime, deployment,
-pilot, tag, GitHub Release, or formal release acceptance. The immutable `v0.3.0`
-tag remains unchanged.
+GitHub publication is not global promotion. The global APG installation remains `0.4.0-dev.20260814` until the independent P5-C transaction is applied. Host reload or invocation, target execution, deployment, pilot, and formal release also remain separate acceptance boundaries. The immutable `v0.3.0` tag remains unchanged, and this snapshot creates no tag or GitHub Release.
 
 See the [operator guide](docs/README.md) and [skill contract](SKILL.md).
